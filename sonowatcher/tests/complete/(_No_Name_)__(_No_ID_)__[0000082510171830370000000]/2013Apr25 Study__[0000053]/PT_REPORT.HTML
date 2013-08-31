@@ -1,0 +1,2021 @@
+<html xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>SonoSite Patient Report</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+<!--				
+					a.plain-blue:link
+					{
+						color: blue;
+						text-decoration: none;
+					}
+					a.plain-blue:visited
+					{
+						color: blue;
+						text-decoration: none;
+					}
+					a.plain-blue:hover
+					{
+						color: blue;
+						text-decoration: none;
+					}
+					a.plain-blue:active
+					{
+						color: blue;
+						text-decoration: none;
+					}
+					caption.n6up-caption
+					{
+						font-size: 9pt;
+						border-style: solid;
+						border-width: 0px;
+						text-align: center;
+						font-style: italic;
+						line-height: 9pt;
+					}
+					div.imaging-reference
+					{
+						display: block;
+						width: 660px;
+					}
+					div.toggleable-section
+					{
+						display: block;
+					}
+					div.notice-bottom
+					{
+						display: block;
+						font-family: sans-serif;
+						font-size: 7pt;
+						line-height: 10pt;
+						text-align: left;
+						width: 660px;
+						margin-top: 1px;
+					}
+					h1
+					{
+						font-family: sans-serif;
+						font-size: 18pt;
+						background: #b7c6f7;
+						color: black;
+						font-weight: bold;
+						line-height: 25pt;
+						text-align: left;
+						width: 660px;
+					}
+					h1.logo
+					{
+						font-family: sans-serif;
+						font-size: 18pt;
+						font-weight: bold;
+						line-height: 25pt;
+						width: 660px;
+					}
+					h2
+					{
+						font-family: sans-serif;
+						font-size: 16pt;
+						color: black;
+						background: #b7c6f7;
+						font-weight: bold;
+						line-height: 20pt;
+						text-align: left;
+						width: 660px;
+					}
+					h3
+					{
+						font-family: sans-serif;
+						font-size: 13pt;
+						color: black;
+						font-weight: bold;
+						line-height: 16pt;
+						text-align: left;
+						margin-top: 3px;
+						margin-bottom: 3px;
+					}
+					h3.report-section
+					{
+						font-family: sans-serif;
+						font-size: 13pt;
+						color: black;
+						background: #b7c6f7;
+						font-weight: bold;
+						line-height: 16pt;
+						text-align: left;
+						width: 660px;
+					}
+					h4
+					{
+						font-family: sans-serif;
+						font-size: 10pt;
+						color: black;
+						font-weight: bold;
+						line-height: 13pt;
+						text-align: left;
+						border-bottom-style: solid;
+						border-bottom-width: 2px;
+						border-bottom-color: Gray;
+						width: 660px;
+					}
+					img.logo
+					{
+						margin-top: 2px;
+						margin-left: 2px;
+						margin-right: 2px;
+						height: 28px;
+						width: 28px;
+						border-style: solid;
+						border-width: 0px;
+						background-color: transparent;
+					}
+					img.nUpImage
+					{
+						height: 228px;
+						width: 304px;
+					}
+					img.referenceImage
+					{
+						height: 396px;
+						width: 528px;
+						margin-bottom: 10px;
+					}
+					p.dr-signature
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						font-weight: bold;
+						line-height: 24pt;
+						background-color: Transparent;
+						width: auto;
+						padding-top: 20px;
+					}
+					p.section-space
+					{
+						padding-top: 16px;
+					}
+					p.top-bottom-links
+					{
+						font-size: 9pt;
+					}
+					span.notice-top
+					{
+						font-family: sans-serif;
+						font-size: 7pt;
+						font-weight: normal;
+						width: auto;
+						background-color: Transparent;
+					}
+					span.toggle-section
+					{
+						display: inline;
+						font-size: 7pt;
+						font-weight: normal;
+						background-color: Transparent;
+						color: blue;
+						cursor: pointer;
+					}
+					span.top
+					{
+						display: inline;
+						font-size: 7pt;
+						font-weight: normal;
+						background-color: Transparent;
+						color: blue;
+					}
+					span.top:link
+					{
+						color: blue;
+					}
+					span.top:visited
+					{
+						color: blue;
+					}
+					span.top:active
+					{
+						color: blue;
+					}
+					table.measures-2col
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-collapse: collapse;
+						border-style: solid;
+						border-width: 0px;
+						width: 250px;
+					}
+					table.measures-2col-narrow
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-collapse: collapse;
+						border-style: solid;
+						border-width: 0px;
+						width: 180px;
+					}
+					table.measures-2col-bpp
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-collapse: collapse;
+						border-style: solid;
+						border-width: 0px;
+						width: 210px;
+					}
+					table.measures-2col-gyn-lmp
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 200px;
+						margin-top: 12px;
+					}
+					table.two-col-gyn-left
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 240px;
+					}
+					table.three-col-gyn-right
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 280px;
+					}
+					table.two-col-gyn-hr
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 150px;
+						margin-top: 12px;
+					}
+					table.measures-2col-obmaternal
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 150px;
+					}
+					table.measures-3col-obanatomy-right
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-collapse: collapse;
+						border-style: solid;
+						border-width: 0px;
+						width: 300px;
+					}
+					table.measures-3col
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 350px;
+					}
+					table.measures-4col
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 450px;
+					}
+					table.measures-4col-obanatomy
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 300px;
+					}
+					table.measures-6col
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 630px;
+					}
+					table.measures-ob-efw
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 400px;
+					}
+					table.measures-6col-narrow
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 450px;
+					}
+					table.measures-6col-obvelocity
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 390px;
+					}
+					table.measures-7col
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 630px;
+					}
+					table.measures-7col-narrow
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 400px;
+					}
+					table.measures-8col
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 660px;
+					}
+					table.n6up
+					{
+						width: 640px;
+						line-height: 160px;
+						border-style: solid;
+						border-width: 0px;
+					}
+					table.n6up-sub
+					{
+						width: 320px;
+						line-height: 160px;
+						border-style: solid;
+						border-width: 0px;
+					}
+					table.patient
+					{
+						width: 315px;
+						font-family: sans-serif;
+						font-size: 9pt;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-width: 0px;
+					}
+					table.patient-carticept
+					{
+						width: 315px;
+						font-family: sans-serif;
+						font-size: 11pt;
+						line-height: 11pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-width: 0px;
+					}
+					table.results-2col
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 250px;
+					}
+					table.lwkst
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 350px;
+					}
+					table.rwkst
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 280px;
+					}
+					table.results-2col-narrow
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 180px;
+					}
+					table.results-4col
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 450px;
+					}
+					table.side-by-side-2col
+					{
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 430px;
+						margin-bottom: 0px;
+					}
+					table.side-by-side-2col-pt
+					{
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 630px;
+						margin-bottom: 0px;
+					}
+					table.side-by-side-2col-wkst
+					{
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 660px;
+						margin-bottom: 0px;
+					}
+					table.side-by-side-2col-ob
+					{
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 660px;
+						margin-bottom: 0px;
+					}
+					table.side-by-side-2col-gyn
+					{
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 520px;
+						margin-bottom: 0px;
+						margin-top: 12px;
+					}
+					table.side-by-side-2col-obanatomy
+					{
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 600px;
+						margin-bottom: 0px;
+					}
+					table.side-by-side-3col
+					{
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 610px;
+						margin-bottom: 0px;
+					}
+					table.comments
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 230px;
+					}
+					table.ob-bottom
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 300px;
+					}
+					table.ob-bottom-left
+					{
+						font-family: sans-serif;
+						font-size: 9pt;
+						font-style: normal;
+						line-height: 9pt;
+						color: black;
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 360px;
+					}
+					td.aaa-table1-leftcol-header
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 250px;
+					}
+					td.aaa-table1-leftcol-name
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 250px;
+					}
+					td.aaa-table1-rightcol-value
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 100px;
+					}
+					td.gallbladder-table1-leftcol-name
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 250px;
+					}
+					td.gallbladder-table1-rightcol-value
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 100px;
+					}
+					td.fast-table1-leftcol-header
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 250px;
+					}
+					td.fast-table1-leftcol-name
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 250px;
+					}
+					td.fast-table1-rightcol-value
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 100px;
+					}
+					td.kidney-3coltable-leftcol-name
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 150px;
+					}
+					td.kidney-3coltable-midcol-header
+					{
+						text-align: left;
+						font-style: normal;
+						text-decoration: underline;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 105px;
+					}
+					td.kidney-3coltable-midcol-value
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 105px;
+					}
+					td.kidney-3coltable-rightcol-header
+					{
+						text-align: left;
+						font-style: normal;
+						text-decoration: underline;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 95px;
+					}
+					td.kidney-3coltable-rightcol-value
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 95px;
+					}
+					td.measures-2col-gyn-lmp-name
+					{
+						margin: 0;
+						font-weight: bold;
+						padding-left: 30px;
+						width: 60px;
+					}
+					td.measures-2col-gyn-lmp-value
+					{
+						margin: 0;
+						padding-left: 10px;
+						width: 140px;
+					}
+					td.two-col-gyn-header
+					{
+						margin: 0;
+						padding-left: 30px;
+						width: 120px;
+						font-weight: bold;
+					}
+					td.two-col-gyn-name
+					{
+						margin: 0;
+						text-align: right;
+						padding-right: 10px;
+						width: 120px;
+						font-weight: bold;
+					}
+					td.two-col-gyn-value
+					{
+						margin: 0;
+						padding-left: 10px;
+						width: 120px;
+					}
+					td.three-col-gyn-header
+					{
+						margin: 0;
+						padding-left: 10px;
+						width: 100px;
+						font-weight: bold;
+					}
+					td.three-col-gyn-name
+					{
+						margin: 0;
+						text-align: right;
+						padding-right: 10px;
+						width: 100px;
+						font-weight: bold;
+					}
+					td.three-col-gyn-value
+					{
+						margin: 0;
+						padding-left: 10px;
+						width: 80px;
+					}
+					td.two-col-gyn-hr-name
+					{
+						margin: 0;
+						padding-left: 30px;
+						width: 60px;
+						font-weight: bold;
+					}
+					td.two-col-gyn-hr-value
+					{
+						margin: 0;
+						padding-left: 10px;
+						width: 90px;
+					}
+					td.ob-top-leftcol-name
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 90px;
+					}
+					td.ob-top-rightcol-value
+					{
+						text-align: right;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 20px;
+						width: 90px;
+					}
+					td.ob-bottom-name
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 130px;
+					}
+					td.ob-bottom-value
+					{
+						text-align: right;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 100px;
+						width: 230px;
+					}
+					td.ob-bottom-value-narrow
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 5px;
+						width: 60px;
+					}
+					td.ob-comments
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 230px;
+					}
+					td.measures-name
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 150px;
+					}
+					td.measures-name-left
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 30px;
+						width: 150px;
+					}
+					td.measures-value
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 100px;
+					}
+					td.measures-value-right
+					{
+						text-align: right;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 100px;
+					}
+					td.measures-name-narrow
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 100px;
+					}
+					td.measures-value-narrow
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 80px;
+					}
+					td.measures-2col-bpp-name
+					{
+						text-align: left;
+						font-weight: bold;
+						margin: 0;
+						padding-left: 10px;
+						width: 150px;
+					}
+					td.measures-2col-bpp-value
+					{
+						text-align: left;
+						margin: 0;
+						padding-left: 10px;
+						width: 60px;
+					}
+					td.measures-2col-obmaternal-value
+					{
+						text-align: right;
+						margin: 0;
+						padding-right: 10px;
+						width: 20px;
+					}
+					td.measures-2col-obmaternal-name
+					{
+						text-align: left;
+						margin: 0;
+						font-weight: bold;
+						padding-left: 10px;
+						width: 130px;
+					}
+					td.measures-3col-obanatomy-name
+					{
+						text-align: right;
+						font-weight: bold;
+						margin: 0;
+						padding-right: 10px;
+						width: 140px;
+					}
+					td.measures-3col-obanatomy-value
+					{
+						text-align: left;
+						margin: 0;
+						padding-left: 10px;
+						width: 130px;
+					}
+					td.measures-3col-obanatomy-grade
+					{
+						text-align: right;
+						margin: 0;
+						width: 30px;
+					}
+					td.measures-4col-obanatomy-leftYesNo
+					{
+						text-align: right;
+						margin: 0;
+						padding-right: 10px;
+						width: 20px;
+					}
+					td.measures-4col-obanatomy-name
+					{
+						text-align: left;
+						margin: 0;
+						font-weight: bold;
+						padding-left: 10px;
+						width: 130px;
+					}
+					td.measures-4col-obanatomy-rightYesNo
+					{
+						text-align: right;
+						margin: 0;
+						padding-right: 10px;
+						width: 20px;
+					}
+					td.measures-4col-obratio-name
+					{
+						text-align: left;
+						font-weight: bold;
+						margin: 0;
+						padding-left: 10px;
+						width: 70px;
+					}
+					td.measures-4col-obratio-value-ratio
+					{
+						text-align: right;
+						margin: 0;
+						padding-right: 10px;
+						width: 50px;
+					}
+					td.measures-4col-obratio-value-range
+					{
+						text-align: left;
+						margin: 0;
+						padding-left: 10px;
+						width: 100px;
+					}
+					td.measures-4col-obratio-value-author
+					{
+						text-align: left;
+						margin: 0;
+						padding-left: 10px;
+						width: 230px;
+					}
+					td.measures-ob-efw-name
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						margin: 0;
+						padding-left: 10px;
+						width: 100px;
+					}
+					td.measures-ob-efw-value
+					{
+						text-align: left;
+						font-style: normal;
+						margin: 0;
+						padding-left: 10px;
+						width: 300px;
+					}
+					td.measures-6col-name
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 150px;
+					}
+					td.measures-6col-value
+					{
+						text-align: right;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 20px;
+						width: 80px;
+					}
+					td.measures-6col-narrow-name
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						margin: 0;
+						padding-left: 10px;
+						width: 75px;
+					}
+					td.measures-6col-obvelocity-name
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						margin: 0;
+						padding-left: 10px;
+						width: 70px;
+					}
+					td.measures-6col-obvelocity-measure
+					{
+						text-align: left;
+						margin: 0;
+						padding-left: 10px;
+						width: 90px;
+					}
+					td.measures-6col-obvelocity-ratio
+					{
+						text-align: left;
+						margin: 0;
+						padding-left: 10px;
+						width: 50px;
+					}
+					td.measures-6col-obvelocity-index
+					{
+						text-align: left;
+						margin: 0;
+						padding-left: 10px;
+						width: 45px;
+					}
+					td.measures-6col-narrow-value
+					{
+						text-align: left;
+						margin: 0;
+						padding-left: 10px;
+						width: 75px;
+					}
+					td.measures-7col-name
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 150px;
+					}
+					td.measures-7col-value
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 80px;
+					}
+					td.measures-8col-name-narrow
+					{
+						text-align: left;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 70px;
+					}
+					td.measures-8col-value-narrow
+					{
+						text-align: left;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 70px;
+					}
+					td.measures-8col-value-mid
+					{
+						text-align: left;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 80px;
+					}
+					td.measures-8col-value-wide
+					{
+						text-align: left;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 110px;
+					}
+					td.n6up
+					{
+						border-style: solid;
+						border-width: 0px;
+					}
+					td.n6up-caption
+					{
+						font-size: 9pt;
+						border-style: solid;
+						border-width: 0px;
+						text-align: center;
+						font-style: italic;
+						line-height: 9pt;
+					}
+					td.patient-name
+					{
+						font-weight: bold;
+						padding-right: 10px;
+						text-align: right;
+						width: 130px;
+					}
+					td.patient-value
+					{
+						text-align: left;
+						width: 185px;
+					}
+					td.results-name
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 150px;
+					}
+					td.results-value
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 100px;
+					}
+					td.results-name-narrow
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 100px;
+					}
+					td.results-value-narrow
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 80px;
+					}
+					td.row-header-lwkst-colspan
+					{
+						text-align: left;
+						font-style: normal;
+						text-decoration: underline;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+					}
+					td.row-header-rwkst
+					{
+						text-align: left;
+						font-style: normal;
+						text-decoration: underline;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 150px;
+					}
+					td.row-value-rwkst-colspan
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+					}
+					td.side-by-side-2col
+					{
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 100px;
+					}
+					td.side-by-side-two-col-gyn-left
+					{
+						vertical-align: top;
+						margin: 0;
+						width: 240px;
+					}
+					td.side-by-side-2col-gyn-right
+					{
+						vertical-align: top;
+						margin: 0;
+						width: 280px;
+					}
+					td.side-by-side-2col-ob-left
+					{
+						vertical-align: top;
+						margin: 0;
+						width: 450px;
+					}
+					td.side-by-side-2col-ob-right
+					{
+						vertical-align: top;
+						margin: 0;
+						width: 210px;
+					}
+					td.side-by-side-2col-obanatomy-left
+					{
+						vertical-align: top;
+						margin: 0;
+						width: 430px;
+					}
+					td.side-by-side-2col-obanatomy-right
+					{
+						vertical-align: top;
+						margin: 0;
+						width: 230px;
+					}
+					td.side-by-side-2col-wkst
+					{
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 100px;
+					}
+					td.side-by-side-3col
+					{
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 100px;
+					}
+					td.carotid-7col-name
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 70px;
+					}
+					td.carotid-ratio-name
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 180px;
+					}
+					td.carotid-7col-value
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 55px;
+					}
+					td.pt-characteristics-name
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 150px;
+					}
+					td.pt-characteristics-value
+					{
+						text-align: left;
+						font-style: normal;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 100px;
+					}
+					th.measures-name
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 150px;
+					}
+					th.measures-value
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 100px;
+					}
+					th.measures-name-left
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 30px;
+						width: 150px;
+					}
+					th.measures-value-noul
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 100px;
+					}
+					th.results-name-noul
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 150px;
+					}
+					th.results-name
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 150px;
+					}
+					th.results-value
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 100px;
+					}
+					th.results-name-narrow
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 100px;
+					}
+					th.results-value-narrow
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 80px;
+					}
+					th.three-col-gyn-right
+					{
+						text-align: left;
+						font-weight: bold;
+						margin: 0;
+						width: 80px;
+						padding-left: 10px;
+					}
+					th.measures-2col-bpp-name
+					{
+						text-align: left;
+						font-weight: bold;
+						margin: 0;
+						width: 150px;
+					}
+					th.measures-2col-obmaternal
+					{
+						text-align: left;
+						font-weight: bold;
+						margin: 0;
+						width: 60px;
+					}
+					th.measures-4col-obanatomy-primary
+					{
+						text-align: left;
+						font-weight: bold;
+						margin: 0;
+						width: 60px;
+					}
+					th.measures-4col-obanatomy-leftYesNo
+					{
+						text-align: right;
+						font-weight: bold;
+						margin: 0;
+						padding-right: 10px;
+						width: 60px;
+					}
+					th.measures-4col-obanatomy-name
+					{
+						text-align: left;
+						font-weight: bold;
+						margin: 0;
+						width: 160px;
+					}
+					th.measures-4col-obanatomy-rightYesNo
+					{
+						text-align: right;
+						font-weight: bold;
+						padding-right: 10px;
+						margin: 0;
+						width: 50px;
+					}
+					th.measures-4col-obratio-name-name
+					{
+						text-align: left;
+						margin: 0;
+						width: 70px;
+					}
+					th.measures-4col-obratio-name-ratio
+					{
+						text-align: right;
+						font-weight: bold;
+						padding-right: 10px;
+						margin: 0;
+						width: 50px;
+					}
+					th.measures-4col-obratio-name-range
+					{
+						text-align: left;
+						font-weight: bold;
+						padding-left: 10px;
+						margin: 0;
+						width: 100px;
+					}
+					th.measures-4col-obratio-name-author
+					{
+						text-align: left;
+						font-weight: bold;
+						padding-left: 10px;
+						margin: 0;
+						width: 230px;
+					}
+					th.measures-6col-obvelocity-name
+					{
+						text-align: left;
+						margin: 0;
+						width: 70px;
+						padding-left: 10px;
+					}
+					th.measures-6col-obvelocity-measure
+					{
+						text-align: left;
+						font-weight: bold;
+						margin: 0;
+						width: 90px;
+						padding-left: 10px;
+					}
+					th.measures-6col-obvelocity-ratio
+					{
+						text-align: left;
+						font-weight: bold;
+						margin: 0;
+						width: 50px;
+						padding-left: 10px;
+					}
+					th.measures-6col-obvelocity-index
+					{
+						text-align: left;
+						font-weight: bold;
+						margin: 0;
+						width: 45px;
+						padding-left: 10px;
+					}
+					th.measures-7col-name
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 150px;
+					}
+					th.measures-7col-value
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 80px;
+					}
+					th.measures-7col-value-noul
+					{
+						text-align: center;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 80px;
+					}
+					th.results-7col-name
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-right: 10px;
+						width: 150px;
+					}
+					th.results-7col-value
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 80px;
+					}
+					th.measures-8col-name-narrow
+					{
+						text-align: left;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						padding-left: 10px;
+						margin: 0;
+						width: 70px;
+					}
+					th.measures-8col-name-mid
+					{
+						text-align: left;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						padding-left: 10px;
+						margin: 0;
+						width: 80px;
+					}
+					th.measures-8col-name-wide
+					{
+						text-align: left;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						padding-left: 10px;
+						margin: 0;
+						width: 110px;
+					}
+					th.carotid-7col-header
+					{
+						text-align: center;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 80px;
+					}
+					th.carotid-7col-name
+					{
+						text-align: right;
+						font-style: normal;
+						font-weight: bold;
+						text-decoration: underline;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						width: 70px;
+					}
+					th.carotid-7col-value
+					{
+						text-align: left;
+						font-style: normal;
+						font-weight: bold;
+						border-style: solid;
+						border-width: 0px;
+						margin: 0;
+						padding-left: 10px;
+						width: 55px;
+					}
+					table.side-by-side-2col-treatment {
+						border-style: solid;
+						border-collapse: collapse;
+						border-width: 0px;
+						width: 630px;
+						margin-bottom: 0px;
+					}
+					table.treatment {
+						width: 330px;
+						font-family: sans-serif;
+						font-size: 11pt;
+						line-height: 11pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-width: 0px;
+					}
+					td.treatment-label-right {
+						font-weight: bold;
+						padding-right: 10px;
+						text-align: right;
+						width: 200px;
+					}
+					td.treatment-value {
+						text-align: left;
+						width: 115px;
+					}
+					table.treatment-right {
+						width: 315px;
+						font-family: sans-serif;
+						font-size: 11pt;
+						line-height: 11pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-width: 0px 0px 0px 0px;
+					}
+					td.treatment-label-left {
+						font-weight: bold;
+						padding-right: 10px;
+						text-align: left;
+						width: 130px;
+					}
+					td.treatment-amount {
+						text-align: left;
+						width: 40px;
+					}
+					td.treatment-label-drugs {
+						font-weight: bold;
+						padding-right: 10px;
+						text-align: left;
+						width: 265px;
+					}
+					td.treatment-value-left-pad {
+						font-weight: bold;
+						padding-right: 5px;
+						text-align: right;
+						width: 10px;
+					}
+					td.treatment-drug {
+						text-align: left;
+						width: 255px;
+					}
+					td.treatment-drug-dosage {
+						text-align: left;
+						width: 65px;
+					}
+					td.treatment-label-drug-volume {
+						font-weight: bold;
+						padding-right: 10px;
+						text-align: left;
+						width: 265px;
+					}
+					td.signature-label {
+						text-align: right;
+						font-weight: bold;
+						padding-right: 2px;
+						width: 190px;
+					}
+					table.signature-block {
+						width: 660px;
+						font-family: sans-serif;
+						font-size: 11pt;
+						line-height: 11pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-width: 0px;
+					}
+					td.date-label {
+						text-align: right;
+						font-weight: bold;
+						width: 60px;
+					}
+					td.signature-line {
+						margin: 0;
+						width: 330px;
+						border-style: none none solid none;
+						border-color: #000;
+						border-width: 1px;
+					}
+					td.date-line {
+						margin: 0;
+						width: 80px;
+						border-style: none none solid none;
+						border-color: #000;
+						border-width: 1px;
+					}
+					table.treatment-checklist {
+						width: 630px;
+						font-family: sans-serif;
+						font-size: 11pt;
+						line-height: 11pt;
+						color: black;
+						text-align: left;
+						border-style: solid;
+						border-width: 0px;
+					}
+					td.treatment-checkbox {
+						font-weight: bold;
+						font: large serif;
+						padding-right: 10px;
+						text-align: right;
+						width: 135px;
+					}
+					td.treatment-checkbox-text {
+						font: normal normal bold 100% sans-serif;
+						text-align: left;
+						width: 500px;
+					}
+					td.treatment-code {
+						font-weight: bold;
+						padding-right: 10px;
+						text-align: right;
+						width: 135px;
+					}
+					td.treatment-comment-line {
+						font: normal normal bold 16pt sans-serif;
+						width: 500px;
+						border-style: none none solid none;
+						border-color: #000;
+						border-width: 1px;
+					}
+
+				-->
+</style>
+</head>
+<body>
+<h1>
+<img class="logo" src="sonologo.gif" alt="SonoSite Logo"/>
+<a name="Home" id="Home">Patient Report </a>
+<span class="notice-top">SonoSite Patient Report, V W1.05 60.x, Copyright © 2010, SonoSite, Inc.</span>
+</h1>
+<p class="top-bottom-links">
+				[<a href="#Patient">Patient</a>]
+				</p>
+<p class="section-space"/>
+<h2><a name="Patient" id="Patient">Patient Information</a></h2>
+<table class="side-by-side-2col-pt">
+<tbody>
+<tr>
+<td valign="top">
+<table class="">
+<tbody>
+<tr>
+<td class="patient-name">Patient Name</td>
+<td class="patient-value">(_No_Name_)</td>
+</tr>
+<tr>
+<td class="patient-name">ID</td>
+<td class="patient-value">(_No_ID_)</td>
+</tr>
+<tr>
+<td class="patient-name">Accession</td>
+<td class="patient-value"></td>
+</tr>
+<tr>
+<td class="patient-name">Date of Birth</td>
+<td class="patient-value"></td>
+</tr>
+<tr>
+<td class="patient-name"></td>
+<td class="patient-value">YYYY  MM  DD</td>
+</tr>
+<tr>
+<td class="patient-name">Gender</td>
+<td class="patient-value"> </td>
+</tr>
+<tr>
+<td class="patient-name">Ethnicity</td>
+<td class="patient-value"> </td>
+</tr>
+<tr>
+<td class="patient-name">Height</td>
+<td class="patient-value"></td>
+</tr>
+<tr>
+<td class="patient-name">Weight</td>
+<td class="patient-value"></td>
+</tr>
+<tr>
+<td class="patient-name"> </td>
+<td class="patient-value"> </td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign="top">
+<table class="">
+<tbody>
+<tr>
+<td class="patient-name">Procedure Type</td>
+<td class="patient-value"></td>
+</tr>
+<tr>
+<td class="patient-name">Procedure ID</td>
+<td class="patient-value">1</td>
+</tr>
+<tr>
+<td class="patient-name">Study Date</td>
+<td class="patient-value">2013  /04  /25</td>
+</tr>
+<tr>
+<td class="patient-name"></td>
+<td class="patient-value">YYYY  MM  DD</td>
+</tr>
+<tr>
+<td class="patient-name">Study Time</td>
+<td class="patient-value">4:37 PM</td>
+</tr>
+<tr>
+<td class="patient-name">Indications</td>
+<td class="patient-value"></td>
+</tr>
+<tr>
+<td class="patient-name">Institution</td>
+<td class="patient-value"></td>
+</tr>
+<tr>
+<td class="patient-name">User</td>
+<td class="patient-value"></td>
+</tr>
+<tr>
+<td class="patient-name">Reading Dr.</td>
+<td class="patient-value"></td>
+</tr>
+<tr>
+<td class="patient-name">Referring Dr.</td>
+<td class="patient-value"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p/>
+<p class="top-bottom-links">
+				[<a href="#Home">Top</a>]
+				[<a href="#Patient">Patient</a>]
+				</p>
+<div class="notice-bottom">SonoSite Patient Report, V W1.05 60.x, Copyright © 2010, SonoSite, Inc.</div>
+</body>
+</html>

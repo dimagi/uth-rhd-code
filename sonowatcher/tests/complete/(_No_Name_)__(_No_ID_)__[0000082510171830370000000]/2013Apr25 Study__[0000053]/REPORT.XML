@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<Report SonoVersion="003.004" Schema="0x83000001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="REPORT.XSD" ModalityLang="">
+   <PPSKeys>
+      <SonoStudyInstanceUID>1.2.840.114340.03.000008251017183037.1.20130425.163744.0000053</SonoStudyInstanceUID>
+      <SeriesInstanceUID>1.2.840.114340.03.000008251017183037.2.20130425.163744.0000053</SeriesInstanceUID></PPSKeys>
+   <Type_Cardiac SonoVersion="003.001" Schema="0x83000003">
+      <PatientCharacteristics>
+         <HeartRate>
+            <ConceptID>HR</ConceptID>
+            <UnitsID>UNITS_BPM</UnitsID>
+            <Value dtype="integer"/></HeartRate>
+         <BSA>
+            <ConceptID>BSA</ConceptID>
+            <UnitsID>UNITS_M2</UnitsID>
+            <Value dtype="float"/></BSA>
+         <SystolicBloodPressure>
+            <ConceptID>BP_SYSTOLIC</ConceptID>
+            <UnitsID>UNITS_MMHG</UnitsID>
+            <Value dtype="integer"/></SystolicBloodPressure>
+         <DiastolicBloodPressure>
+            <ConceptID>BP_DIASTOLIC</ConceptID>
+            <UnitsID>UNITS_MMHG</UnitsID>
+            <Value dtype="integer"/></DiastolicBloodPressure></PatientCharacteristics>
+      <SRCharacteristics>
+         <SOPInstanceUID/>
+         <ContentDate/>
+         <ContentTime/>
+         <InstanceNumber/></SRCharacteristics>
+      <Echocardiography inUse="no">
+         <EchoSection>
+            <EchoSectionID>LEFT_VENTRICLE</EchoSectionID></EchoSection>
+         <EchoSection>
+            <EchoSectionID>RIGHT_VENTRICLE</EchoSectionID></EchoSection>
+         <EchoSection>
+            <EchoSectionID>LEFT_ATRIUM</EchoSectionID></EchoSection>
+         <EchoSection>
+            <EchoSectionID>RIGHT_ATRIUM</EchoSectionID></EchoSection>
+         <EchoSection>
+            <EchoSectionID>AORTIC_VALVE</EchoSectionID></EchoSection>
+         <EchoSection>
+            <EchoSectionID>MITRAL_VALVE</EchoSectionID></EchoSection>
+         <EchoSection>
+            <EchoSectionID>PULMONIC_VALVE</EchoSectionID></EchoSection>
+         <EchoSection>
+            <EchoSectionID>TRICUSPID_VALVE</EchoSectionID></EchoSection>
+         <EchoSection>
+            <EchoSectionID>AORTA</EchoSectionID></EchoSection>
+         <EchoSection>
+            <EchoSectionID>CARDIAC_SHUNT</EchoSectionID></EchoSection></Echocardiography></Type_Cardiac>
+   <Type_GYN SonoVersion="003.001" Schema="0x83000003">
+      <Implemented>YES</Implemented>
+      <PatientCharacteristics>
+         <HeartRate>
+            <ConceptID>HR</ConceptID>
+            <UnitsID>UNITS_BPM</UnitsID>
+            <Value dtype="integer"/></HeartRate>
+         <BSA>
+            <ConceptID>BSA</ConceptID>
+            <UnitsID>UNITS_M2</UnitsID>
+            <Value dtype="float"/></BSA>
+         <SystolicBloodPressure>
+            <ConceptID>BP_SYSTOLIC</ConceptID>
+            <UnitsID>UNITS_MMHG</UnitsID>
+            <Value dtype="integer"/></SystolicBloodPressure>
+         <DiastolicBloodPressure>
+            <ConceptID>BP_DIASTOLIC</ConceptID>
+            <UnitsID>UNITS_MMHG</UnitsID>
+            <Value dtype="integer"/></DiastolicBloodPressure></PatientCharacteristics>
+      <SRCharacteristics>
+         <SOPInstanceUID/>
+         <ContentDate/>
+         <ContentTime/>
+         <InstanceNumber/></SRCharacteristics>
+      <GYN inUse="no"/></Type_GYN>
+   <Type_IMT SonoVersion="003.003" Schema="0x83000001">
+      <Implemented>YES</Implemented>
+      <PatientCharacteristics>
+         <HeartRate>
+            <ConceptID>HR</ConceptID>
+            <UnitsID>UNITS_BPM</UnitsID>
+            <Value dtype="integer"/></HeartRate>
+         <BSA>
+            <ConceptID>BSA</ConceptID>
+            <UnitsID>UNITS_M2</UnitsID>
+            <Value dtype="float"/></BSA>
+         <SystolicBloodPressure>
+            <ConceptID>BP_SYSTOLIC</ConceptID>
+            <UnitsID>UNITS_MMHG</UnitsID>
+            <Value dtype="integer"/></SystolicBloodPressure>
+         <DiastolicBloodPressure>
+            <ConceptID>BP_DIASTOLIC</ConceptID>
+            <UnitsID>UNITS_MMHG</UnitsID>
+            <Value dtype="integer"/></DiastolicBloodPressure></PatientCharacteristics>
+      <SRCharacteristics>
+         <SOPInstanceUID/>
+         <ContentDate/>
+         <ContentTime/>
+         <InstanceNumber/></SRCharacteristics>
+      <IMT inUse="no">
+         <Measurement name="IMT1">
+            <Side name="Left">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side>
+            <Side name="Right">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side></Measurement>
+         <Measurement name="IMT2">
+            <Side name="Left">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side>
+            <Side name="Right">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side></Measurement>
+         <Measurement name="IMT3">
+            <Side name="Left">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side>
+            <Side name="Right">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side></Measurement>
+         <Measurement name="IMT4">
+            <Side name="Left">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side>
+            <Side name="Right">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side></Measurement>
+         <Measurement name="IMT5">
+            <Side name="Left">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side>
+            <Side name="Right">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side></Measurement>
+         <Measurement name="IMT6">
+            <Side name="Left">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side>
+            <Side name="Right">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side></Measurement>
+         <Measurement name="IMT7">
+            <Side name="Left">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side>
+            <Side name="Right">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side></Measurement>
+         <Measurement name="IMT8">
+            <Side name="Left">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side>
+            <Side name="Right">
+               <Enabled>YES</Enabled>
+               <Max name="Max" dtype="float" units="mm" vm="1"/>
+               <Mean name="Mean" dtype="float" units="mm" vm="1"/>
+               <Width name="Width" dtype="float" units="mm" vm="1"/></Side></Measurement>
+         <Mean name="Mean">
+            <Enabled>YES</Enabled>
+            <Average name="Average" dtype="float" units="mm" vm="1"/>
+            <Maximum name="Maximum" dtype="float" units="mm" vm="1"/>
+            <Minimum name="Minimum" dtype="float" units="mm" vm="1"/></Mean>
+         <MaxRegion name="MaxRegion">
+            <Enabled>YES</Enabled>
+            <Average name="Average" dtype="float" units="mm" vm="1"/>
+            <Maximum name="Maximum" dtype="float" units="mm" vm="1"/>
+            <Minimum name="Minimum" dtype="float" units="mm" vm="1"/></MaxRegion></IMT>
+      <Plaque inUse="no">
+         <Measurement name="Plaque1">
+            <Side name="Left">
+               <Enabled>YES</Enabled>
+               <Distance name="Distance" dtype="float" units="cm" vm="1"/></Side>
+            <Side name="Right">
+               <Enabled>YES</Enabled>
+               <Distance name="Distance" dtype="float" units="cm" vm="1"/></Side></Measurement>
+         <Measurement name="Plaque2">
+            <Side name="Left">
+               <Enabled>YES</Enabled>
+               <Distance name="Distance" dtype="float" units="cm" vm="1"/></Side>
+            <Side name="Right">
+               <Enabled>YES</Enabled>
+               <Distance name="Distance" dtype="float" units="cm" vm="1"/></Side></Measurement></Plaque>
+      <AreaReduction inUse="no">
+         <Side name="Left">
+            <Enabled>YES</Enabled>
+            <Area name="Area1">
+               <Perimeter name="Perimeter" dtype="float" units="cm" vm="1"/>
+               <AreaCalc name="AreaCalc" dtype="float" units="cm2" vm="1"/></Area>
+            <Area name="Area2">
+               <Perimeter name="Perimeter" dtype="float" units="cm" vm="1"/>
+               <AreaCalc name="AreaCalc" dtype="float" units="cm2" vm="1"/></Area>
+            <PercentReduction name="PercentReduction" dtype="float" vm="1"/></Side>
+         <Side name="Right">
+            <Enabled>YES</Enabled>
+            <Area name="Area1">
+               <Perimeter name="Perimeter" dtype="float" units="cm" vm="1"/>
+               <AreaCalc name="AreaCalc" dtype="float" units="cm2" vm="1"/></Area>
+            <Area name="Area2">
+               <Perimeter name="Perimeter" dtype="float" units="cm" vm="1"/>
+               <AreaCalc name="AreaCalc" dtype="float" units="cm2" vm="1"/></Area>
+            <PercentReduction name="PercentReduction" dtype="float" vm="1"/></Side></AreaReduction>
+      <DiameterReduction inUse="no">
+         <Side name="Left">
+            <Enabled>YES</Enabled>
+            <Diameter name="Diameter1">
+               <Distance name="Distance" dtype="float" units="cm" vm="1"/></Diameter>
+            <Diameter name="Diameter2">
+               <Distance name="Distance" dtype="float" units="cm" vm="1"/></Diameter>
+            <PercentReduction name="PercentReduction" dtype="float" vm="1"/></Side>
+         <Side name="Right">
+            <Enabled>YES</Enabled>
+            <Diameter name="Diameter1">
+               <Distance name="Distance" dtype="float" units="cm" vm="1"/></Diameter>
+            <Diameter name="Diameter2">
+               <Distance name="Distance" dtype="float" units="cm" vm="1"/></Diameter>
+            <PercentReduction name="PercentReduction" dtype="float" vm="1"/></Side></DiameterReduction></Type_IMT>
+   <Type_OB SonoVersion="003.001" Schema="0x83000003">
+      <Implemented>YES</Implemented>
+      <PatientCharacteristics>
+         <HeartRate>
+            <ConceptID>HR</ConceptID>
+            <UnitsID>UNITS_BPM</UnitsID>
+            <Value dtype="integer"/></HeartRate>
+         <BSA>
+            <ConceptID>BSA</ConceptID>
+            <UnitsID>UNITS_M2</UnitsID>
+            <Value dtype="float"/></BSA>
+         <SystolicBloodPressure>
+            <ConceptID>BP_SYSTOLIC</ConceptID>
+            <UnitsID>UNITS_MMHG</UnitsID>
+            <Value dtype="integer"/></SystolicBloodPressure>
+         <DiastolicBloodPressure>
+            <ConceptID>BP_DIASTOLIC</ConceptID>
+            <UnitsID>UNITS_MMHG</UnitsID>
+            <Value dtype="integer"/></DiastolicBloodPressure></PatientCharacteristics>
+      <SRCharacteristics>
+         <SOPInstanceUID/>
+         <ContentDate/>
+         <ContentTime/>
+         <InstanceNumber/></SRCharacteristics>
+      <OB inUse="no"/></Type_OB>
+   <Type_VAS SonoVersion="050.001" Schema="0x83000001">
+      <Implemented>YES</Implemented>
+      <PatientCharacteristics>
+         <HeartRate>
+            <ConceptID>HR</ConceptID>
+            <UnitsID>UNITS_BPM</UnitsID>
+            <Value dtype="integer"/></HeartRate>
+         <BSA>
+            <ConceptID>BSA</ConceptID>
+            <UnitsID>UNITS_M2</UnitsID>
+            <Value dtype="float"/></BSA>
+         <SystolicBloodPressure>
+            <ConceptID>BP_SYSTOLIC</ConceptID>
+            <UnitsID>UNITS_MMHG</UnitsID>
+            <Value dtype="integer"/></SystolicBloodPressure>
+         <DiastolicBloodPressure>
+            <ConceptID>BP_DIASTOLIC</ConceptID>
+            <UnitsID>UNITS_MMHG</UnitsID>
+            <Value dtype="integer"/></DiastolicBloodPressure></PatientCharacteristics>
+      <SRCharacteristics>
+         <SOPInstanceUID/>
+         <ContentDate/>
+         <ContentTime/>
+         <InstanceNumber/></SRCharacteristics>
+      <VAS inUse="no"/></Type_VAS>
+   <Emed SonoVersion="003.004" Schema="0x83000002" inUse="no">
+      <AAA inUse="no">
+         <Findings>
+            <AAAPresent/>
+            <AAATypeSelection/>
+            <AortaProximalAorta/>
+            <AortaMidAorta/>
+            <AortaDistalAorta/>
+            <AortaIlliacRight/>
+            <AortaIlliacLeft/>
+            <AortaSagital/></Findings>
+         <Views/>
+         <Interpretation/>
+         <Comments/></AAA>
+      <Gallbladder inUse="no">
+         <Findings>
+            <CholelithiasisStonesPresent/>
+            <CommonBileDuct/>
+            <AnteriorGBWall/>
+            <PericholecysticFluidPresent/>
+            <MurphysSignPresent/></Findings>
+         <Views/>
+         <Interpretation/>
+         <Comments/></Gallbladder>
+      <Kidney inUse="no">
+         <Findings>
+            <RightNormalPresent/>
+            <RightLength/>
+            <RightCystsSelection/>
+            <RightHydronephrosisSelection/>
+            <RightCalculiStonesSelection/>
+            <LeftNormalPresent/>
+            <LeftLength/>
+            <LeftCystsSelection/>
+            <LeftHydronephrosisSelection/>
+            <LeftCalculiStonesSelection/>
+            <UVJetsRight>FALSE</UVJetsRight>
+            <UVJetsLeft>FALSE</UVJetsLeft></Findings>
+         <Views/>
+         <Interpretation/>
+         <Comments/></Kidney>
+      <FAST inUse="no">
+         <Findings>
+            <PericardialEffusionPresent/>
+            <RUQMorisonsPouchPresent/>
+            <LUQSplenicPresent/>
+            <SuprapubicPelvicPresent/>
+            <PleuralEffusionPresent/>
+            <CardiacMotionPresent/>
+            <HemothoraxPresent/>
+            <PneumothoraxPresent/></Findings>
+         <Views/>
+         <Interpretation/>
+         <Comments/></FAST>
+      <OB inUse="no">
+         <Findings>
+            <LMP/>
+            <GAbyLMP/>
+            <EDDbyLMP/>
+            <AUA/>
+            <EDDbyAUA/>
+            <PelvicFreeFluidPresent/>
+            <GestationalSacPresent/>
+            <YolkSacPresent/>
+            <FetalPolePresent/>
+            <FetalHrPresent/>
+            <AdnexaRightPresent/>
+            <AdnexaLeftPresent/>
+            <GS/>
+            <GSUA/>
+            <CRL/>
+            <CRLUA/>
+            <BPD/>
+            <BPDUA/>
+            <FetalHr/></Findings>
+         <Views/>
+         <Interpretation/>
+         <Comments/></OB>
+      <Procedural inUse="no">
+         <Findings>
+            <VenousAccessCentral/>
+            <VenousAccessPeripheral/>
+            <Paracentesis/>
+            <Thoracentesis/>
+            <Pericardiocentesis/>
+            <Arthrocentesis/>
+            <AbscessDrainage/>
+            <ForeignBodyRemoval/>
+            <BladderAspiration/>
+            <LumbarPuncture/>
+            <Other/>
+            <Success/></Findings>
+         <Views/>
+         <Interpretation/>
+         <Comments/></Procedural></Emed></Report>

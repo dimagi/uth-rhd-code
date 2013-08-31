@@ -1,0 +1,14 @@
+from datetime import timedelta
+#Put your BROKER_URL information here
+BROKER_URL=amqp://my_worker:password@localhost:5672/my_vhost
+
+
+#Override the celerybeat_schedule here if needed
+#CELERYBEAT_SCHEDULE = {
+    #"upload_exams": {
+        #"task": "tasks.upload_exams",
+        #"schedule": timedelta(seconds=60),
+    #},
+#}
+
+

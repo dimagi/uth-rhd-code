@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<Clip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CLIP.xsd" SonoVersion="050.103" Schema="0x83000001" ClipBinSchema="0x83000003">
+   <ClipMetadata>
+      <AggregateLFSR>0</AggregateLFSR>
+      <PatientMetadataPath>\Storage Card\var\patient\P0000082510171830370000000\S0000053\R0000053\PT_PPS.XML</PatientMetadataPath>
+      <ClipDataPath>\Storage Card\var\patient\P0000082510171830370000000\S0000053\R0000053\C0000215.DAT</ClipDataPath>
+      <ClipName>C0000215</ClipName>
+      <ClipType>1</ClipType>
+      <ClipFlags>0</ClipFlags>
+      <LoopReference>0</LoopReference>
+      <AcquisitionRate>0.000</AcquisitionRate>
+      <State>
+         <IsExpired>FALSE</IsExpired>
+         <IsDataValid>FALSE</IsDataValid></State>
+      <RWaveVector/>
+      <FrameMapSeq>
+         <Item>
+            <FrameOffset>3480</FrameOffset>
+            <FrameLength>86428</FrameLength>
+            <FrameLFSR>13751738</FrameLFSR>
+            <FramePreLFSR>6976</FramePreLFSR></Item></FrameMapSeq></ClipMetadata>
+   <InstanceNumber>215</InstanceNumber>
+   <ContentDate>20130510</ContentDate>
+   <ContentTime>133000</ContentTime>
+   <NumberofFrames>1</NumberofFrames>
+   <FrameTime/>
+   <Rows>480</Rows>
+   <Columns>640</Columns>
+   <UltrasoundColorDataPresent>0</UltrasoundColorDataPresent>
+   <ChromaPseudocolorPresent>0</ChromaPseudocolorPresent>
+   <HeartRate>0</HeartRate>
+   <BPSystolic>0</BPSystolic>
+   <BPDiastolic>0</BPDiastolic>
+   <TransducerData>50.80.102.032\\</TransducerData>
+   <ScanheadName>P10</ScanheadName>
+   <SOPInstanceUID>1.2.840.114340.03.000008251017183037.3.20130510.133000.0000215</SOPInstanceUID>
+   <SpecificCharacterSet literal="ISO_IR 100">ISO_IR 100</SpecificCharacterSet>
+   <PlatformName>Turbo</PlatformName>
+   <SCCompatible>YES</SCCompatible>
+   <HomeRowAnnotationStr>                                     </HomeRowAnnotationStr>
+   <SubPlatformType>M-Turbo</SubPlatformType>
+   <ExamName>Cardiac</ExamName>
+   <ARMVersion>51.80.108.010</ARMVersion></Clip>
