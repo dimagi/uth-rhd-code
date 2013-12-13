@@ -21,7 +21,7 @@ def get_xforms(sonowatch):
 
 
 
-
+# Example XML Formatting
 #modified_date format 2013-08-23T11:38:45.396
 #<attachment_group>
 #<file_attachment>prop1</file_attachment>        
@@ -67,14 +67,15 @@ def render_xform(file_tuples, exam_uuid, patient_case_id=None):
     }
 
     final_xml = xform_template % format_dict
-    #url = self.url_base + "/a/%s/receiver" % domain
-    #print post_data(final_xml, url, path=None, use_curl=True, use_chunked=True, is_odk=True, attachments=attachment_tuples)
     return final_xml
-
-
-
-
-
-
-    return ""
+    
+def send_xform(domain, final_xml, attachment_tuples):
+    """
+    Trivial sender for posting the form data.
+    
+    Note, this calls the HQ post_data which isn't quite imported yet...
+    """
+    url = self.url_base + "/a/%s/receiver" % domain
+    return post_data(final_xml, url, path=None, use_curl=True, use_chunked=True, is_odk=True, attachments=attachment_tuples)
+    
 
