@@ -35,7 +35,12 @@ class SonoSiteWatcher(object):
                 yield exam
 
 
-    def return_pairs(self, exam_dir, file_filter): #file_map, xml_files, flt_func):
+    def return_pairs(self, exam_dir, file_filter):
+        """
+        All exam binaries (jpg or video) are paired with an xml file. This method returns tuples of them.
+        
+        Assumption here is that the caller of this method will do the actual processing of the exam files.
+        """
         files = self.exam_files(exam_dir)
         non_report_files = filter(lambda x: x not in self.NEEDED_FOR_COMPLETION+ [self.REPORT_PDF], files)
         image_files = filter(file_filter, non_report_files)
@@ -46,13 +51,12 @@ class SonoSiteWatcher(object):
         file_map = dict((parse_num(x), x) for x in image_files)
 
         for xml in xml_files:
-            #C0000282.XML
+            #e.g. C0000282.XML
             seq = xml[1:-4]
             if seq in file_map:
                 yield file_map[seq], xml
 
     def exam_image_pairs(self, exam_dir):
-        #file_filter = lambda x: x.endswith('.jpeg') or x.endswith('.jpg')
         def img_filter(x): 
             return x.endswith('.jpeg') or x.endswith('.jpg')
         file_filter = img_filter
@@ -82,12 +86,19 @@ class SonoSiteWatcher(object):
         return files
 
     def get_case_id(self):
-        """This is the case_id if it's extracted"""
+        """
+        This is the case_id if it's extracted, assumed to be in the PatientID
+        However, there's a nonzero chance of them either forgetting to scan it
+        Or putting it in the wrong field like PatientsName
+        """
         patient_xml = self.patient_exam_xml()
         exam_root = etree.fromstring(patient_xml)
         return exam_root.find("PatientID").text
 
     def get_study_id(self):
+        """
+        The GUID the sonosite generates for the particular exam
+        """
         patient_xml = self.patient_exam_xml()
         exam_root = etree.fromstring(patient_xml)
         return exam_root.find("SonoStudyInstanceUID").text
@@ -102,6 +113,9 @@ class SonoSiteWatcher(object):
                 yield img_pair
 
     def is_exam_complete(self, exam_dir):
+        """
+        Given the directory that the process is looking at, determine if it's complete and ready for processing.
+        """
         files = self.exam_files(exam_dir)
         
         done_files = 0
@@ -121,10 +135,11 @@ class SonoSiteWatcher(object):
                 break
         return completed
     
-    def is_complete(self):
-        exam_dirs = list(self.exam_dirs())
+    def archive_exam(self, exam_dir):
+        """
+        Assuming that processing is complete, move the exam directory to the archive location so that it won't
+        be processed again.
+        """
+        pass
+    
 
-        for ex in exam_dirs:
-            if not self.is_exam_complete(ex):
-                return False
-        return True
