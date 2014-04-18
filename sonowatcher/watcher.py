@@ -1,9 +1,5 @@
 from lxml import etree
 import os
-import sys
-import time
-import logging
-
 
 
 class SonoSiteWatcher(object):
@@ -14,7 +10,7 @@ class SonoSiteWatcher(object):
         'REPORT.XML',
         'PT_PPS.XML',
         'PT_REPORT.HTML',
-        ]
+    ]
 
     REPORT_PDF = 'PT_REPORT.PDF'
 
@@ -34,20 +30,23 @@ class SonoSiteWatcher(object):
             if exam not in ['.', '..']:
                 yield exam
 
-
     def return_pairs(self, exam_dir, file_filter):
         """
-        All exam binaries (jpg or video) are paired with an xml file. This method returns tuples of them.
-        
-        Assumption here is that the caller of this method will do the actual processing of the exam files.
+        All exam binaries (jpg or video) are paired with an xml file.
+        This method returns tuples of them.
+
+        Assumption here is that the caller of this method will
+        do the actual processing of the exam files.
         """
         files = self.exam_files(exam_dir)
         non_report_files = filter(lambda x: x not in self.NEEDED_FOR_COMPLETION+ [self.REPORT_PDF], files)
         image_files = filter(file_filter, non_report_files)
         xml_files = filter(lambda x: x.endswith('.XML'), non_report_files)
+
         def parse_num(n):
             #07.01.32 hrs __[0000279]
             return n[n.index('[')+1:n.index(']')]
+
         file_map = dict((parse_num(x), x) for x in image_files)
 
         for xml in xml_files:
@@ -57,13 +56,13 @@ class SonoSiteWatcher(object):
                 yield file_map[seq], xml
 
     def exam_image_pairs(self, exam_dir):
-        def img_filter(x): 
+        def img_filter(x):
             return x.endswith('.jpeg') or x.endswith('.jpg')
         file_filter = img_filter
         return self.return_pairs(exam_dir, file_filter)
 
     def exam_video_pairs(self, exam_dir):
-        def vid_filter(x): 
+        def vid_filter(x):
             return x.endswith('.mp4')
         file_filter = vid_filter
         return self.return_pairs(exam_dir, file_filter)
@@ -75,7 +74,7 @@ class SonoSiteWatcher(object):
         for exam_dir in self.exam_dirs():
             files = self.exam_files(exam_dir)
             if "PT_PPS.XML" in files:
-                with open(os.path.join(self.path, exam_dir, 'PT_PPS.XML'))as fin:
+                with open(os.path.join(self.path, exam_dir, 'PT_PPS.XML')) as fin:
                     patient_xml = fin.read()
                     self._patient_xml = patient_xml
                     return patient_xml
@@ -114,32 +113,30 @@ class SonoSiteWatcher(object):
 
     def is_exam_complete(self, exam_dir):
         """
-        Given the directory that the process is looking at, determine if it's complete and ready for processing.
+        Given the directory that the process is looking at,
+        determine if it's complete and ready for processing.
         """
         files = self.exam_files(exam_dir)
-        
+
         done_files = 0
         for x in self.NEEDED_FOR_COMPLETION:
             if x in files:
                 done_files += 1
-        
+
         completed = False
         if done_files == len(self.NEEDED_FOR_COMPLETION):
             completed = True
 
-        #check for shouldn't exist files
-        temp_files = 0
+        # check for shouldn't exist files
         for x in self.SHOULD_NOT_EXIST:
             if x in files:
                 completed = False
                 break
         return completed
-    
+
     def archive_exam(self, exam_dir):
         """
-        Assuming that processing is complete, move the exam directory to the archive location so that it won't
-        be processed again.
+        Assuming that processing is complete, move the exam directory to the
+        archive location so that it won't be processed again.
         """
         pass
-    
-
