@@ -1,4 +1,3 @@
-from datetime import timedelta, datetime
 from unittest import TestCase
 from sonowatcher.watcher import SonoSiteWatcher
 import os
@@ -16,7 +15,6 @@ class WatcherTests(TestCase):
         #delete target dir?
         pass
 
-
     def testCompleteDirs(self):
         currpath = os.path.dirname(os.path.abspath(__file__))
         print currpath
@@ -29,18 +27,16 @@ class WatcherTests(TestCase):
             print list(watcher.all_media())
             self.assertIsNotNone(watcher.patient_exam_xml())
 
-
-
     def testGenerateSubmission(self):
         pass
 
-
     def testGetIDs(self):
-        study_ids = ["1.2.840.114340.03.000008251017183037.1.20130425.163744.0000053",
-                     "1.2.840.114340.03.000008251017183037.2.20130821.094421.0000080"]
+        study_ids = [
+            "1.2.840.114340.03.000008251017183037.1.20130425.163744.0000053",
+            "1.2.840.114340.03.000008251017183037.2.20130821.094421.0000080"
+        ]
 
-
-        case_ids = ["JHUYIIYIUIY", "(_No_ID_)" ]
+        case_ids = ["JHUYIIYIUIY", "(_No_ID_)"]
         currpath = os.path.dirname(os.path.abspath(__file__))
         cpath = os.path.join(currpath, 'complete')
         completes = os.listdir(cpath)
@@ -55,11 +51,3 @@ class WatcherTests(TestCase):
 
             self.assertTrue(case_id in case_ids)
             case_ids.remove(case_id)
-
-
-
-
-
-
-
-
