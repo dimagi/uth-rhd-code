@@ -25,9 +25,9 @@ class SonoSiteWatcher(object):
 
     def exam_dirs(self):
         exams = os.listdir(self.path)
-
         for exam in exams:
-            if exam not in ['.', '..']:
+            if exam not in ['.', '..'] and \
+               os.path.isdir(os.path.join(self.path, exam)):
                 yield exam
 
     def return_pairs(self, exam_dir, file_filter):
@@ -111,12 +111,23 @@ class SonoSiteWatcher(object):
             for img_pair in self.exam_video_pairs(exam_dir):
                 yield img_pair
 
-    def is_exam_complete(self, exam_dir):
+    def is_complete(self):
         """
         Given the directory that the process is looking at,
         determine if it's complete and ready for processing.
+
+        To do this, we check every test directory for completion. We do this
+        for completion and edge case protection, even though there should
+        only be one test directory per exam.
         """
-        files = self.exam_files(exam_dir)
+        for file_or_dir in self.exam_dirs():
+            if not self.is_test_complete(os.path.join(self.path, file_or_dir)):
+                return False
+
+        return True
+
+    def is_test_complete(self, test_dir):
+        files = self.exam_files(test_dir)
 
         done_files = 0
         for x in self.NEEDED_FOR_COMPLETION:
