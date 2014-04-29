@@ -1,11 +1,18 @@
 import os
 import zipfile
 from watcher import SonoSiteWatcher
+import requests
+from requests.auth import HTTPDigestAuth
+import shutil
 
-SCANNER_OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tests', 'complete')
+SCANNER_OUTPUT_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), 'tests', 'complete'
+)
+
 
 def get_subdirectories(directory):
     return [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
+
 
 def run():
     current_path = os.path.dirname(os.path.abspath(__file__))
@@ -46,8 +53,29 @@ def run():
                     )
                 )
 
-                # TODO do processing here
+            zip_file.close()
+
+            with open(os.path.join(current_path, 'uploading.zip')) as f:
+                r = requests.post(
+                    url='http://localhost:8000/a/hello/sonosite_upload',
+                    auth=HTTPDigestAuth('t@w.com', 'asdf'),
+                    files={'file': f},
+                    data={}
+                )
+
+            if r.status_code == 200 and r.json()['result'] == 'uploaded':
+                # TODO enable this after testing
+                pass
+                # shutil.move(
+                #     session_dir,
+                #     os.path.join(current_path, 'complete')
+                # )
+
+            print r.status_code
+            print r.text
         finally:
+            # delete the temp zip no matter what happens since we keep
+            # the original copy in tact
             os.remove(os.path.join(current_path, 'uploading.zip'))
 
 
