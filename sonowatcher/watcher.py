@@ -85,26 +85,6 @@ class SonoSiteWatcher(object):
         files = os.listdir(os.path.join(self.path, exam_dir))
         return files
 
-    #TODO this goes to server side
-    def get_case_id(self):
-        """
-        This is the case_id if it's extracted, assumed to be in the PatientID
-        However, there's a nonzero chance of them either forgetting to scan it
-        Or putting it in the wrong field like PatientsName
-        """
-        patient_xml = self.patient_exam_xml()
-        exam_root = etree.fromstring(patient_xml)
-        return exam_root.find("PatientID").text
-
-    #TODO this goes to server side
-    def get_study_id(self):
-        """
-        The GUID the sonosite generates for the particular exam
-        """
-        patient_xml = self.patient_exam_xml()
-        exam_root = etree.fromstring(patient_xml)
-        return exam_root.find("SonoStudyInstanceUID").text
-
     def all_media(self):
         for exam_dir in self.exam_dirs():
             #return self.exam_image_pairs(exam_dir)
