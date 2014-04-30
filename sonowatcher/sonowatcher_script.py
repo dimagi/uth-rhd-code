@@ -28,32 +28,30 @@ def run():
             watcher = SonoSiteWatcher(session_dir)
 
             if not watcher.is_complete():
+                # if this directory is still being copied, just skip for now
                 next
 
-            zip_file = zipfile.ZipFile('uploading.zip', 'w')
-
-            zip_file.write(
-                os.path.join(scan_dir, 'PT_PPS.XML'),
-                os.path.join(os.path.split(scan_dir)[-1], 'PT_PPS.XML')
-            )
-            for media, xml in watcher.all_media():
+            with zipfile.ZipFile('uploading.zip', 'w') as zip_file:
                 zip_file.write(
-                    os.path.join(scan_dir, media),
-                    os.path.join(
-                        os.path.split(scan_dir)[-1],
-                        xml.split('.')[0],
-                        media)
+                    os.path.join(scan_dir, 'PT_PPS.XML'),
+                    os.path.join(os.path.split(scan_dir)[-1], 'PT_PPS.XML')
                 )
-                zip_file.write(
-                    os.path.join(scan_dir, xml),
-                    os.path.join(
-                        os.path.split(scan_dir)[-1],
-                        xml.split('.')[0],
-                        xml
+                for media, xml in watcher.all_media():
+                    zip_file.write(
+                        os.path.join(scan_dir, media),
+                        os.path.join(
+                            os.path.split(scan_dir)[-1],
+                            xml.split('.')[0],
+                            media)
                     )
-                )
-
-            zip_file.close()
+                    zip_file.write(
+                        os.path.join(scan_dir, xml),
+                        os.path.join(
+                            os.path.split(scan_dir)[-1],
+                            xml.split('.')[0],
+                            xml
+                        )
+                    )
 
             with open(os.path.join(current_path, 'uploading.zip')) as f:
                 r = requests.post(
@@ -63,16 +61,17 @@ def run():
                     data={}
                 )
 
-            if r.status_code == 200 and r.json()['result'] == 'uploaded':
-                # TODO enable this after testing
-                pass
-                # shutil.move(
-                #     session_dir,
-                #     os.path.join(current_path, 'complete')
-                # )
-
-            print r.status_code
-            print r.text
+            if r.status_code == 200:
+                if r.json()['result'] == 'uploaded':
+                    pass
+                    # TODO enable this after testing
+                    # shutil.move(
+                    #     session_dir,
+                    #     os.path.join(current_path, 'complete')
+                    # )
+                print "%s: %s" % (r.json()['result'], r.json()['message'])
+            else:
+                print "Unknown error"
         finally:
             # delete the temp zip no matter what happens since we keep
             # the original copy in tact
