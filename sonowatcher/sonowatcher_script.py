@@ -53,7 +53,16 @@ def run():
                         )
                     )
 
-            with open(os.path.join(current_path, 'uploading.zip')) as f:
+            with open(os.path.join(current_path, 'uploading.zip'), 'r+b') as f:
+                # HACK: detect problematic windows central directory
+                # http://stackoverflow.com/questions/4923142/zipfile-cant-handle-some-type-of-zip-data
+                data = f.read()
+                pos = data.find('\x50\x4b\x05\x06')
+                if (pos > 0):
+                    f.seek(pos + 22)
+                    f.truncate()
+                    f.seek(0)
+
                 r = requests.post(
                     url='http://localhost:8000/a/hello/sonosite_upload',
                     auth=HTTPDigestAuth('t@w.com', 'asdf'),
