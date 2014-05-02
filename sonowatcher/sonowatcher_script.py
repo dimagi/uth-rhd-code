@@ -31,44 +31,31 @@ def run():
                 # if this directory is still being copied, just skip for now
                 next
 
-            with zipfile.ZipFile('uploading.zip', 'w') as zip_file:
+            files = {}
+            files['PT_PPS.XML'] = open(os.path.join(scan_dir, 'PT_PPS.XML'), 'r')
+
+            for media, xml in watcher.all_media():
+                files[media] = open(os.path.join(
+                    scan_dir,
+                    media
+                ), 'r')
+                """
                 zip_file.write(
-                    os.path.join(scan_dir, 'PT_PPS.XML'),
-                    os.path.join(os.path.split(scan_dir)[-1], 'PT_PPS.XML')
-                )
-                for media, xml in watcher.all_media():
-                    zip_file.write(
-                        os.path.join(scan_dir, media),
-                        os.path.join(
-                            os.path.split(scan_dir)[-1],
-                            xml.split('.')[0],
-                            media)
+                    os.path.join(scan_dir, xml),
+                    os.path.join(
+                        os.path.split(scan_dir)[-1],
+                        xml.split('.')[0],
+                        xml
                     )
-                    zip_file.write(
-                        os.path.join(scan_dir, xml),
-                        os.path.join(
-                            os.path.split(scan_dir)[-1],
-                            xml.split('.')[0],
-                            xml
-                        )
-                    )
-
-            with open(os.path.join(current_path, 'uploading.zip'), 'r+b') as f:
-                # HACK: detect problematic windows central directory
-                # http://stackoverflow.com/questions/4923142/zipfile-cant-handle-some-type-of-zip-data
-                data = f.read()
-                pos = data.find('\x50\x4b\x05\x06')
-                if (pos > 0):
-                    f.seek(pos + 22)
-                    f.truncate()
-                    f.seek(0)
-
-                r = requests.post(
-                    url='http://localhost:8000/a/hello/sonosite_upload',
-                    auth=HTTPDigestAuth('t@w.com', 'asdf'),
-                    files={'file': f},
-                    data={}
                 )
+                """
+
+            r = requests.post(
+                url='http://localhost:8000/a/hello/sonosite_upload',
+                auth=HTTPDigestAuth('t@w.com', 'asdf'),
+                files=files,
+                data={}
+            )
 
             if r.status_code == 200:
                 if r.json()['result'] == 'uploaded':
@@ -82,9 +69,10 @@ def run():
             else:
                 print "Unknown error"
         finally:
+            pass
             # delete the temp zip no matter what happens since we keep
             # the original copy in tact
-            os.remove(os.path.join(current_path, 'uploading.zip'))
+            # os.remove(os.path.join(current_path, 'uploading.zip'))
 
 
 if __name__ == '__main__':
