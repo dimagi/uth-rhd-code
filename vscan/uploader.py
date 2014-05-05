@@ -35,44 +35,26 @@ def parse_archive():
             yield Exam(exam_dir, *exam.split('_'))
 
 
-def zip_directory(directory):
+def pack_directory(directory):
+    # name of the test directory we're packing
     test_dir_name = os.path.split(directory)[1]
-    zip_filename = '%s.zip' % (test_dir_name)
 
-    # TODO: create uploads/ if it doesn't exist
-    zipf = zipfile.ZipFile(
-        os.path.join('uploads', zip_filename),
-        'w'
-    )
+    packed_directory = {}
 
     for root, dirs, files in os.walk(directory):
-        for file in files:
-            absolute_path = os.path.join(
-                root,
-                file
-            )
-            relative_path = os.path.join(
-                test_dir_name,
-                file
-            )
+        for f in files:
+            relative_path = os.path.join(test_dir_name, f)
+            packed_directory[relative_path] = open(os.path.join(root, f))
 
-            zipf.write(absolute_path, relative_path)
-
-    zipf.close()
-
-    return zip_filename
+    return packed_directory
 
 
 def upload():
     exams = parse_archive()
-    # first zip all new files and archive their directories
-    for exam in exams:
-        zip_filename = zip_directory(exam.directory)
 
-        current_dir = os.path.dirname(os.path.realpath(__file__))
-        zip_with_path = os.path.join(current_dir, 'uploads', zip_filename)
-        zip_obj = open(zip_with_path, 'rb')
-        files = {'file': (zip_filename, zip_obj)}
+    for exam in exams:
+        files = pack_directory(exam.directory)
+
         r = requests.post(
             url='http://localhost:8000/a/hello/vscan_upload',
             auth=HTTPDigestAuth('t@w.com', 'asdf'),
@@ -87,6 +69,7 @@ def upload():
         print r.text
 
         #if zip_filename:
+            #current_dir = os.path.dirname(os.path.realpath(__file__))
             #shutil.move(
                 #exam.directory,
                 #os.path.join(current_dir, 'complete')
