@@ -1,5 +1,4 @@
 import os
-import zipfile
 import shutil
 import requests
 from requests.auth import HTTPDigestAuth
@@ -65,20 +64,23 @@ def upload():
                 'date': exam.date
             },
         )
-        print r.status_code
-        print r.text
+        print ""
+        print "Processed exam: %s" % os.path.split(exam.directory)[-1]
+        print "Result code: %s" % r.status_code
 
-        #if zip_filename:
-            #current_dir = os.path.dirname(os.path.realpath(__file__))
-            #shutil.move(
-                #exam.directory,
-                #os.path.join(current_dir, 'complete')
-            #)
+        if r.status_code == 200:
+            print "Result: %s" % r.json()['result']
+            print "Message: %s" % r.json()['message']
 
-    # then post exam data
-    # TODO
+            current_dir = os.path.dirname(os.path.realpath(__file__))
+            shutil.move(
+                exam.directory,
+                os.path.join(current_dir, 'complete')
+            )
+
+        else:
+            "Result: Failed"
 
 
 if __name__ == '__main__':
-    # from requests.auth import HTTPBasicAuth
     upload()

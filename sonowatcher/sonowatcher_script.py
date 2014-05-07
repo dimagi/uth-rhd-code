@@ -37,16 +37,6 @@ def run():
                 scan_dir,
                 media
             ), 'r')
-            """
-            zip_file.write(
-                os.path.join(scan_dir, xml),
-                os.path.join(
-                    os.path.split(scan_dir)[-1],
-                    xml.split('.')[0],
-                    xml
-                )
-            )
-            """
 
         r = requests.post(
             url='http://localhost:8000/a/hello/sonosite_upload',
