@@ -3,10 +3,13 @@ import shutil
 import requests
 from requests.auth import HTTPDigestAuth
 
-URL = 'http://localhost:8000/a/hello'
+SERVER = 'http://localhost:8000'
+DOMAIN = 'uth-rhd'
+URL = "%s/a/%s" % (SERVER, DOMAIN)
 
-SCANNER_DIR = '/Users/tyler/code/dimagi/uth-rhd-code/vscan/'
-
+# SCANNER_DIR = '/Users/tyler/code/dimagi/uth-rhd-code/vscan/'
+# SCANNER_DIR = '/Volumes/NO NAME'
+SCANNER_DIR = '/Users/tyler'
 ARCHIVE_PATH = os.path.join(SCANNER_DIR, 'Archive')
 
 
@@ -55,13 +58,13 @@ def upload():
         files = pack_directory(exam.directory)
 
         r = requests.post(
-            url='http://localhost:8000/a/hello/vscan_upload',
+            url=URL + '/vscan_upload',
             auth=HTTPDigestAuth('t@w.com', 'asdf'),
             files=files,
             data={
                 'scanner_serial': exam.serial,
                 'scan_id': exam.scan_id,
-                'date': exam.date
+                'scan_time': exam.date
             },
         )
         print ""
