@@ -4,9 +4,13 @@ import requests
 from requests.auth import HTTPDigestAuth
 import shutil
 
-SCANNER_OUTPUT_DIR = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), 'tests', 'complete'
-)
+CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
+
+SCANNER_OUTPUT_DIR = os.path.join(CURRENT_PATH, 'data')
+
+SERVER = 'http://localhost:8000'
+DOMAIN = 'uth-rhd'
+URL = "%s/a/%s" % (SERVER, DOMAIN)
 
 
 def get_subdirectories(directory):
@@ -14,7 +18,6 @@ def get_subdirectories(directory):
 
 
 def run():
-    current_path = os.path.dirname(os.path.abspath(__file__))
 
     for session in get_subdirectories(SCANNER_OUTPUT_DIR):
         # each exam session has nested scan sessions
@@ -39,7 +42,7 @@ def run():
             ), 'r')
 
         r = requests.post(
-            url='http://localhost:8000/a/hello/sonosite_upload',
+            url=URL + '/sonosite_upload',
             auth=HTTPDigestAuth('t@w.com', 'asdf'),
             files=files,
             data={}
