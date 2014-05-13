@@ -39,7 +39,7 @@ def run():
             files[media] = open(os.path.join(
                 scan_dir,
                 media
-            ), 'r')
+            ), 'rb')
 
         r = requests.post(
             url=URL + '/sonosite_upload',
