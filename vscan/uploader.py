@@ -139,6 +139,11 @@ def upload():
 
 if __name__ == '__main__':
     if SCANNER_DIR:
-        upload()
+        try:
+            upload()
+        except Exception as e:
+            print e
+        print('\nUploading complete. Press enter to exit.')
+        raw_input()
     else:
         print "Vscan not found"
