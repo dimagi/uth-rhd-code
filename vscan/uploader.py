@@ -3,6 +3,7 @@ import shutil
 import requests
 from requests.auth import HTTPDigestAuth
 from collections import namedtuple
+import string
 
 SERVER = 'http://localhost:8000'
 DOMAIN = 'uth-rhd'
@@ -10,8 +11,17 @@ URL = "%s/a/%s" % (SERVER, DOMAIN)
 
 # SCANNER_DIR = '/Users/tyler/code/dimagi/uth-rhd-code/vscan/'
 # SCANNER_DIR = '/Volumes/NO NAME'
-SCANNER_DIR = '/Users/tyler'
-ARCHIVE_PATH = os.path.join(SCANNER_DIR, 'Archive')
+# SCANNER_DIR = '/Users/tyler/Desktop'
+# SCANNER_DIR = '/Volumes/PENDRIVE'
+
+try:
+    SCANNER_DIR = ['%s:' % d for d in string.uppercase if os.path.exists(
+        os.path.join('%s:' % d, 'Archive')
+    )][0]
+except IndexError:
+    SCANNER_DIR = None
+
+ARCHIVE_PATH = os.path.join(SCANNER_DIR or '', 'Archive')
 
 
 class Exam(object):
@@ -128,4 +138,7 @@ def upload():
 
 
 if __name__ == '__main__':
-    upload()
+    if SCANNER_DIR:
+        upload()
+    else:
+        print "Vscan not found"
