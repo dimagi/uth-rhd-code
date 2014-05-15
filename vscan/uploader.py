@@ -46,7 +46,7 @@ def pack_directory(directory):
     for root, dirs, files in os.walk(directory):
         for f in files:
             relative_path = os.path.join(test_dir_name, f)
-            packed_directory[relative_path] = open(os.path.join(root, f))
+            packed_directory[relative_path] = open(os.path.join(root, f), 'rb')
 
     return packed_directory
 
