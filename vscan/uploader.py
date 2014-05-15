@@ -2,6 +2,7 @@ import os
 import shutil
 import requests
 from requests.auth import HTTPDigestAuth
+from collections import namedtuple
 
 SERVER = 'http://localhost:8000'
 DOMAIN = 'uth-rhd'
@@ -51,38 +52,79 @@ def pack_directory(directory):
     return packed_directory
 
 
+def upload_exam(exam, index, total_count, retry_count=0):
+    print ""
+    print "Uploading exam %s of %s." % (index + 1, total_count)
+    files = pack_directory(exam.directory)
+
+    r = requests.post(
+        url=URL + '/vscan_upload',
+        auth=HTTPDigestAuth('t@w.com', 'asdf'),
+        files=files,
+        data={
+            'scanner_serial': exam.serial,
+            'scan_id': exam.scan_id,
+            'scan_time': exam.date
+        },
+    )
+    print "Processed exam: %s" % os.path.split(exam.directory)[-1]
+    print "Result code: %s" % r.status_code
+
+    if r.status_code == 200:
+        print "Result: %s" % r.json()['result']
+        print "Message: %s" % r.json()['message']
+
+        #current_dir = os.path.dirname(os.path.realpath(__file__))
+        #shutil.move(
+            #exam.directory,
+            #os.path.join(current_dir, 'complete')
+        #)
+
+    else:
+        print "Result: Failed"
+
+    return r
+
+
 def upload():
-    exams = parse_archive()
+    print "Checking exams"
+    exams = list(parse_archive())
+    print "Done checking exams"
 
-    for exam in exams:
-        files = pack_directory(exam.directory)
+    failed_uploads = []
+    FailedUpload = namedtuple(
+        'FailedUpload', 'exam exam_index failure_count'
+    )
 
-        r = requests.post(
-            url=URL + '/vscan_upload',
-            auth=HTTPDigestAuth('t@w.com', 'asdf'),
-            files=files,
-            data={
-                'scanner_serial': exam.serial,
-                'scan_id': exam.scan_id,
-                'scan_time': exam.date
-            },
+    for i, exam in enumerate(exams):
+        result = upload_exam(exam, i, len(exams))
+
+        if result.status_code != 200:
+            failed_uploads.append(FailedUpload(
+                exam,
+                i,
+                1
+            ))
+
+    while len(failed_uploads):
+        current_upload = failed_uploads.pop()
+        print "\nRetrying exam %s, attempt %s" % (
+            current_upload.exam_index + 1,
+            current_upload.failure_count
         )
-        print ""
-        print "Processed exam: %s" % os.path.split(exam.directory)[-1]
-        print "Result code: %s" % r.status_code
 
-        if r.status_code == 200:
-            print "Result: %s" % r.json()['result']
-            print "Message: %s" % r.json()['message']
+        result = upload_exam(
+            current_upload.exam,
+            current_upload.exam_index,
+            current_upload.failure_count
+        )
 
-            current_dir = os.path.dirname(os.path.realpath(__file__))
-            shutil.move(
-                exam.directory,
-                os.path.join(current_dir, 'complete')
-            )
-
-        else:
-            "Result: Failed"
+        if result.status_code != 200 and current_upload.failure_count < 3:
+            failed_uploads.append(FailedUpload(
+                current_upload.exam,
+                current_upload.exam_index,
+                current_upload.failure_count + 1
+            ))
 
 
 if __name__ == '__main__':
