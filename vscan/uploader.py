@@ -46,7 +46,12 @@ def parse_archive():
     for exam in exams:
         exam_dir = os.path.join(ARCHIVE_PATH, exam)
         if exam not in ['.', '..'] and os.path.isdir(exam_dir):
-            yield Exam(exam_dir, *exam.split('_'))
+            try:
+                yield Exam(exam_dir, *exam.split('_'))
+            except Exception:
+                # if the directory doesn't resemble an exam, we don't
+                # care about the error or the directory
+                continue
 
 
 def pack_directory(directory):
