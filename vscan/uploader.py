@@ -70,7 +70,7 @@ def pack_directory(directory):
 
 def upload_exam(exam, index, total_count, retry_count=0):
     print ""
-    print "Uploading exam %s of %s." % (index + 1, total_count)
+    print "Uploading exam with id %s (%s of %s)." % (exam.scan_id, index + 1, total_count)
     files = pack_directory(exam.directory)
 
     r = requests.post(
@@ -107,12 +107,32 @@ def upload():
     exams = list(parse_archive())
     print "Done checking exams"
 
+    if not len(exams):
+        print "No exams to upload"
+        return
+
+    r = requests.get(
+        url=URL + '/pending_exams/' + exams[0].serial,
+        auth=HTTPDigestAuth('t@w.com', 'asdf'),
+    )
+
+    if r.status_code != 200 or 'exam_ids' not in r.json().keys():
+        import bpdb; bpdb.set_trace()
+        print "Failed to get pending exam list from server. Please try again later."
+        return
+
+    pending_exams = r.json()['exam_ids']
+
     failed_uploads = []
     FailedUpload = namedtuple(
         'FailedUpload', 'exam exam_index failure_count'
     )
 
     for i, exam in enumerate(exams):
+        if exam.scan_id.lstrip('0') not in pending_exams:
+            print "\nSkipping exam %s since there is no found pending exam." % exam.scan_id.lstrip('0')
+            continue
+
         result = upload_exam(exam, i, len(exams))
 
         if result.status_code != 200:
