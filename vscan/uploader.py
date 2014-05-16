@@ -15,8 +15,9 @@ URL = "%s/a/%s" % (SERVER, DOMAIN)
 # SCANNER_DIR = '/Volumes/PENDRIVE'
 
 try:
+    # find first windows drive with the special scanner file present
     SCANNER_DIR = ['%s:' % d for d in string.uppercase if os.path.exists(
-        os.path.join('%s:' % d, 'Archive')
+        os.path.join('%s:' % d, 'Archive', 'ScannerID.GEUSHH')
     )][0]
 except IndexError:
     SCANNER_DIR = None
