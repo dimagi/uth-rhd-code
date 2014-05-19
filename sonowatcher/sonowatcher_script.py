@@ -24,7 +24,11 @@ def run():
         # TODO this is "supposed to" only be one dir, but in theory
         # may be more
         session_dir = os.path.join(SCANNER_OUTPUT_DIR, session)
-        scan_dir = os.path.join(session_dir, get_subdirectories(session_dir)[0])
+        subdirectories = get_subdirectories(session_dir)
+        if subdirectories:
+            scan_dir = os.path.join(session_dir, subdirectories[0])
+        else:
+            continue
 
         watcher = SonoSiteWatcher(session_dir)
 
