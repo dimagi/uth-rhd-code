@@ -56,14 +56,11 @@ def parse_archive():
 
 def pack_directory(directory):
     # name of the test directory we're packing
-    test_dir_name = os.path.split(directory)[1]
-
     packed_directory = {}
 
     for root, dirs, files in os.walk(directory):
         for f in files:
-            relative_path = os.path.join(test_dir_name, f)
-            packed_directory[relative_path] = open(os.path.join(root, f), 'rb')
+            packed_directory[f] = open(os.path.join(root, f), 'rb')
 
     return packed_directory
 
@@ -101,6 +98,10 @@ def upload_exam(exam, index, total_count, retry_count=0):
     except requests.ConnectionError:
         print "Could not connect to server."
         return
+
+    # clean up
+    for f in files.values():
+        f.close()
 
     print "Processed exam: %s" % os.path.split(exam.directory)[-1]
     print "Result code: %s" % r.status_code
