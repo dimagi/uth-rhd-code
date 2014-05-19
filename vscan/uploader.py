@@ -121,6 +121,15 @@ def upload_exam(exam, index, total_count, retry_count=0):
     return r
 
 
+def find_duplicate_exam_ids(exam_ids):
+    dupes = []
+    for exam in exam_ids:
+        if exam not in dupes and exam_ids.count(exam) > 1:
+            dupes.append(exam)
+
+    return dupes
+
+
 def upload():
     print "Checking exams"
     exams = list(parse_archive())
@@ -141,6 +150,7 @@ def upload():
         return
 
     pending_exams = r.json()['exam_ids']
+    duplicate_exams = find_duplicate_exam_ids(pending_exams)
 
     failed_uploads = []
     FailedUpload = namedtuple(
@@ -151,6 +161,9 @@ def upload():
         if exam.scan_id.lstrip('0') not in pending_exams:
             print "\nSkipping exam %s since there is no found pending exam." % exam.scan_id.lstrip('0')
             continue
+
+        if exam.scan_id.lstrip('0') in duplicate_exams:
+            print "\nSkipping exam %s since there are duplicate potential exams to match to." % exam.scan_id.lstrip('0')
 
         result = upload_exam(exam, i, len(exams))
 

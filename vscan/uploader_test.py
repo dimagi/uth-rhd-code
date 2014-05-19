@@ -1,5 +1,5 @@
 import unittest
-from uploader import Exam, ARCHIVE_PATH, parse_archive
+from uploader import Exam, ARCHIVE_PATH, parse_archive, find_duplicate_exam_ids
 
 
 class UploaderTests(unittest.TestCase):
@@ -19,6 +19,15 @@ class UploaderTests(unittest.TestCase):
             self.assertEqual(exam.scan_id, self.expected_exams[i][1])
             self.assertEqual(exam.date, self.expected_exams[i][2])
             self.assertEqual(len(list(exam.files)), self.expected_exams[i][3])
+
+    def testDuplicateChecking(self):
+        exam_ids = ['4', '5', '6', '6', '4', '7']
+
+        self.assertEqual(
+            ['4', '6'],
+            sorted(find_duplicate_exam_ids(exam_ids))
+        )
+
 
 if __name__ == '__main__':
     unittest.main()
