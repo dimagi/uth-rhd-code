@@ -69,20 +69,39 @@ def pack_directory(directory):
 
 
 def upload_exam(exam, index, total_count, retry_count=0):
-    print ""
-    print "Uploading exam with id %s (%s of %s)." % (exam.scan_id, index + 1, total_count)
+    if not retry_count:
+        print ""
+        print "Uploading exam with id %s (%s of %s)." % (
+            exam.scan_id.lstrip('0'),
+            index + 1,
+            total_count
+        )
+    else:
+        print ""
+        print "Retrying exam with id %s (%s of %s), attempt %s" % (
+            exam.scan_id.lstrip('0'),
+            index + 1,
+            total_count,
+            retry_count + 1
+        )
     files = pack_directory(exam.directory)
 
-    r = requests.post(
-        url=URL + '/vscan_upload',
-        auth=HTTPDigestAuth('t@w.com', 'asdf'),
-        files=files,
-        data={
-            'scanner_serial': exam.serial,
-            'scan_id': exam.scan_id,
-            'scan_time': exam.date
-        },
-    )
+    try:
+        r = requests.post(
+            url=URL + '/vscan_upload',
+            #auth=HTTPDigestAuth('twymer@dimagi.com', 'a long password that i should change'),
+            auth=HTTPDigestAuth('t@w.com', 'asdf'),
+            files=files,
+            data={
+                'scanner_serial': exam.serial,
+                'scan_id': exam.scan_id,
+                'scan_time': exam.date
+            },
+        )
+    except requests.ConnectionError:
+        print "Could not connect to server."
+        return
+
     print "Processed exam: %s" % os.path.split(exam.directory)[-1]
     print "Result code: %s" % r.status_code
 
@@ -135,7 +154,7 @@ def upload():
 
         result = upload_exam(exam, i, len(exams))
 
-        if result.status_code != 200:
+        if not result or result.status_code != 200:
             failed_uploads.append(FailedUpload(
                 exam,
                 i,
@@ -143,19 +162,16 @@ def upload():
             ))
 
     while len(failed_uploads):
-        current_upload = failed_uploads.pop()
-        print "\nRetrying exam %s, attempt %s" % (
-            current_upload.exam_index + 1,
-            current_upload.failure_count
-        )
+        current_upload = failed_uploads.pop(0)
 
         result = upload_exam(
             current_upload.exam,
             current_upload.exam_index,
+            len(exams),
             current_upload.failure_count
         )
 
-        if result.status_code != 200 and current_upload.failure_count < 3:
+        if (not result or result.status_code != 200) and current_upload.failure_count < 3:
             failed_uploads.append(FailedUpload(
                 current_upload.exam,
                 current_upload.exam_index,
