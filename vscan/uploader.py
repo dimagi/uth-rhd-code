@@ -8,6 +8,8 @@ import string
 SERVER = 'http://localhost:8000'
 DOMAIN = 'uth-rhd'
 URL = "%s/a/%s" % (SERVER, DOMAIN)
+MAX_MBS = 3.4
+
 
 # SCANNER_DIR = '/Users/tyler/code/dimagi/uth-rhd-code/vscan/'
 # SCANNER_DIR = '/Volumes/NO NAME'
@@ -55,12 +57,28 @@ def parse_archive():
                 continue
 
 
+def get_file_size(file_path):
+    return float(os.stat(file_path).st_size) / 1024 / 1024
+
+
 def pack_directory(directory):
+    current_mbs = 0
+    skipped = False
     packed_directory = {}
 
     for root, dirs, files in os.walk(directory):
         for f in files:
-            packed_directory[f] = open(os.path.join(root, f), 'rb')
+            file_path = os.path.join(root, f)
+            file_size = get_file_size(file_path)
+
+            # only add the file if we aren't going over our system limit
+            if current_mbs + file_size < MAX_MBS:
+                packed_directory[f] = open(file_path, 'rb')
+                current_mbs += file_size
+                skipped = True
+
+    if skipped:
+        print "Some images or videos were skipped due to exam size being too large."
 
     return packed_directory
 
