@@ -16,8 +16,9 @@ URL = "%s/a/%s" % (SERVER, DOMAIN)
 
 try:
     # find first windows drive with the special scanner file present
-    SCANNER_DIR = ['%s:' % d for d in string.uppercase if os.path.exists(
-        os.path.join('%s:' % d, 'Archive', 'ScannerID.GEUSHH')
+    SCANNER_DIR = ['%s:' % d for d in string.uppercase if (
+                   os.path.exists(os.path.join('%s:' % d, 'Archive')) and
+                   os.path.exists(os.path.join('%s:' % d, 'ScannerID.GEUSHH'))
     )][0]
 except IndexError:
     SCANNER_DIR = None
@@ -55,7 +56,6 @@ def parse_archive():
 
 
 def pack_directory(directory):
-    # name of the test directory we're packing
     packed_directory = {}
 
     for root, dirs, files in os.walk(directory):
@@ -84,10 +84,10 @@ def upload_exam(exam, index, total_count, retry_count=0):
     files = pack_directory(exam.directory)
 
     try:
-        r = requests.post(
-            url=URL + '/vscan_upload',
-            #auth=HTTPDigestAuth('twymer@dimagi.com', 'a long password that i should change'),
-            auth=HTTPDigestAuth('t@w.com', 'asdf'),
+        s = requests.Session()
+        s.auth = HTTPDigestAuth('twymer@dimagi.com', 'a long password that i should change')
+        r = s.post(
+            URL + '/vscan_upload',
             files=files,
             data={
                 'scanner_serial': exam.serial,
@@ -110,11 +110,11 @@ def upload_exam(exam, index, total_count, retry_count=0):
         print "Result: %s" % r.json()['result']
         print "Message: %s" % r.json()['message']
 
-        #current_dir = os.path.dirname(os.path.realpath(__file__))
-        #shutil.move(
-            #exam.directory,
-            #os.path.join(current_dir, 'complete')
-        #)
+        current_dir = os.path.dirname(os.path.realpath(__file__))
+        shutil.move(
+            exam.directory,
+            os.path.join(current_dir, 'complete')
+        )
 
     else:
         print "Result: Failed"
@@ -165,6 +165,7 @@ def upload():
 
         if exam.scan_id.lstrip('0') in duplicate_exams:
             print "\nSkipping exam %s since there are duplicate potential exams to match to." % exam.scan_id.lstrip('0')
+            continue
 
         result = upload_exam(exam, i, len(exams))
 
@@ -199,7 +200,8 @@ if __name__ == '__main__':
             upload()
         except Exception as e:
             print e
-        print('\nUploading complete. Press enter to exit.')
-        raw_input()
     else:
         print "Vscan not found"
+
+    print('\nUploading complete. Press enter to exit.')
+    raw_input()

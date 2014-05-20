@@ -34,7 +34,7 @@ def run():
 
         if not watcher.is_complete():
             # if this directory is still being copied, just skip for now
-            next
+            continue
 
         files = {}
         files['PT_PPS.XML'] = open(os.path.join(scan_dir, 'PT_PPS.XML'), 'r')
@@ -45,9 +45,10 @@ def run():
                 media
             ), 'rb')
 
-        r = requests.post(
-            url=URL + '/sonosite_upload',
-            auth=HTTPDigestAuth('t@w.com', 'asdf'),
+        s = requests.Session()
+        s.auth = HTTPDigestAuth('t@w.com', 'asdf'),
+        r = s.post(
+            URL + '/sonosite_upload',
             files=files,
             data={}
         )
