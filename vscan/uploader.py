@@ -64,10 +64,16 @@ def pack_directory(directory):
             file_path = os.path.join(root, f)
             file_size = get_file_size(file_path)
 
+            if f[-4:].lower() == '.wav':
+                # we don't care about sound clips for the study
+                # so lets not waste bandwidth on them
+                continue
+
             # only add the file if we aren't going over our system limit
             if current_mbs + file_size < MAX_MBS:
                 packed_directory[f] = open(file_path, 'rb')
                 current_mbs += file_size
+            else:
                 skipped = True
 
     if skipped:
