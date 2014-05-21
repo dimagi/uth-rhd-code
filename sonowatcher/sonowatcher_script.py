@@ -3,21 +3,18 @@ from watcher import SonoSiteWatcher
 import requests
 from requests.auth import HTTPDigestAuth
 import shutil
+import yaml
 
 CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-SCANNER_OUTPUT_DIR = os.path.join(CURRENT_PATH, 'data')
-
-SERVER = 'http://localhost:8000'
-DOMAIN = 'uth-rhd'
-URL = "%s/a/%s" % (SERVER, DOMAIN)
+SCANNER_OUTPUT_DIR = os.path.join(CURRENT_PATH, 'complete')
 
 
 def get_subdirectories(directory):
     return [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
 
 
-def run():
+def run(config):
 
     for session in get_subdirectories(SCANNER_OUTPUT_DIR):
         # each exam session has nested scan sessions
@@ -46,9 +43,9 @@ def run():
             ), 'rb')
 
         s = requests.Session()
-        s.auth = HTTPDigestAuth('t@w.com', 'asdf'),
+        s.auth = HTTPDigestAuth(config['username'], config['password'])
         r = s.post(
-            URL + '/sonosite_upload',
+            config['url'] + '/sonosite_upload',
             files=files,
             data={}
         )
@@ -63,8 +60,14 @@ def run():
                 # )
             print "%s: %s" % (r.json()['result'], r.json()['message'])
         else:
+            print r
             print "Unknown error"
 
 
 if __name__ == '__main__':
-    run()
+    with open('config.yaml', 'r') as f:
+        config = yaml.load(f)
+
+    config['url'] = '%s/a/%s' % (config['server'], 'uth-rhd')
+
+    run(config)
