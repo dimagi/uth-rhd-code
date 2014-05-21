@@ -4,17 +4,10 @@ import requests
 from requests.auth import HTTPDigestAuth
 from collections import namedtuple
 import string
+import yaml
+import getpass
 
-SERVER = 'http://localhost:8000'
-DOMAIN = 'uth-rhd'
-URL = "%s/a/%s" % (SERVER, DOMAIN)
 MAX_MBS = 3.4
-
-
-# SCANNER_DIR = '/Users/tyler/code/dimagi/uth-rhd-code/vscan/'
-# SCANNER_DIR = '/Volumes/NO NAME'
-# SCANNER_DIR = '/Users/tyler/Desktop'
-# SCANNER_DIR = '/Volumes/PENDRIVE'
 
 try:
     # find first windows drive with the special scanner file present
@@ -83,7 +76,7 @@ def pack_directory(directory):
     return packed_directory
 
 
-def upload_exam(exam, index, total_count, retry_count=0):
+def upload_exam(config, exam, index, total_count, retry_count=0):
     if not retry_count:
         print ""
         print "Uploading exam with id %s (%s of %s)." % (
@@ -103,9 +96,9 @@ def upload_exam(exam, index, total_count, retry_count=0):
 
     try:
         s = requests.Session()
-        s.auth = HTTPDigestAuth('twymer@dimagi.com', 'a long password that i should change')
+        s.auth = HTTPDigestAuth(config['username'], config['password'])
         r = s.post(
-            URL + '/vscan_upload',
+            config['url'] + '/vscan_upload',
             files=files,
             data={
                 'scanner_serial': exam.serial,
@@ -149,7 +142,7 @@ def find_duplicate_exam_ids(exam_ids):
     return dupes
 
 
-def upload():
+def upload(config):
     print "Checking exams"
     exams = list(parse_archive())
     print "Done checking exams"
@@ -159,12 +152,11 @@ def upload():
         return
 
     r = requests.get(
-        url=URL + '/pending_exams/' + exams[0].serial,
-        auth=HTTPDigestAuth('t@w.com', 'asdf'),
+        url=config['url'] + '/pending_exams/' + exams[0].serial,
+        auth=HTTPDigestAuth(config['username'], config['password']),
     )
 
     if r.status_code != 200 or 'exam_ids' not in r.json().keys():
-        import bpdb; bpdb.set_trace()
         print "Failed to get pending exam list from server. Please try again later."
         return
 
@@ -185,7 +177,7 @@ def upload():
             print "\nSkipping exam %s since there are duplicate potential exams to match to." % exam.scan_id.lstrip('0')
             continue
 
-        result = upload_exam(exam, i, len(exams))
+        result = upload_exam(config, exam, i, len(exams))
 
         if not result or result.status_code != 200:
             failed_uploads.append(FailedUpload(
@@ -215,7 +207,20 @@ def upload():
 if __name__ == '__main__':
     if SCANNER_DIR:
         try:
-            upload()
+            with open('config.yaml', 'r') as f:
+                config = yaml.load(f)
+
+            config['url'] = '%s/a/%s' % (config['server'], 'uth-rhd')
+
+            if not config['username']:
+                config['username'] = raw_input("Enter CommCareHQ username: ")
+
+                # if there is no username, password is probably wrong anyway
+                config['password'] = getpass.getpass()
+            elif not config['password']:
+                config['password'] = getpass.getpass()
+
+            upload(config)
         except Exception as e:
             print e
     else:
