@@ -3,7 +3,7 @@ from watcher import SonoSiteWatcher
 import requests
 from requests.auth import HTTPDigestAuth
 import shutil
-import yaml
+import ConfigParser
 
 CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -65,9 +65,18 @@ def run(config):
 
 
 if __name__ == '__main__':
-    with open('config.yaml', 'r') as f:
-        config = yaml.load(f)
+    cfg_file = ConfigParser.RawConfigParser()
+    cfg_file.read('config.cfg')
 
-    config['url'] = '%s/a/%s' % (config['server'], 'uth-rhd')
+    config = {}
 
-    run(config)
+    config['server'] = cfg_file.get('sonowatcher', 'server')
+    config['username'] = cfg_file.get('sonowatcher', 'username')
+    config['password'] = cfg_file.get('sonowatcher', 'password')
+
+    if config['server'] and config['username'] and config['password']:
+        config['url'] = '%s/a/%s' % (config['server'], 'uth-rhd')
+
+        run(config)
+    else:
+        print "Missing configuration values. Please make sure server, username and password are stored in config.cfg."

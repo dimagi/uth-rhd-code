@@ -4,7 +4,7 @@ import requests
 from requests.auth import HTTPDigestAuth
 from collections import namedtuple
 import string
-import yaml
+import ConfigParser
 import getpass
 
 MAX_MBS = 3.4
@@ -196,6 +196,7 @@ def upload(config):
         current_upload = failed_uploads.pop(0)
 
         result = upload_exam(
+            config,
             current_upload.exam,
             current_upload.exam_index,
             len(exams),
@@ -213,8 +214,14 @@ def upload(config):
 if __name__ == '__main__':
     if SCANNER_DIR:
         try:
-            with open('config.yaml', 'r') as f:
-                config = yaml.load(f)
+            cfg_file = ConfigParser.RawConfigParser()
+            cfg_file.read('config.cfg')
+
+            config = {}
+
+            config['server'] = cfg_file.get('uploader', 'server')
+            config['username'] = cfg_file.get('uploader', 'username')
+            config['password'] = cfg_file.get('uploader', 'password')
 
             config['url'] = '%s/a/%s' % (config['server'], 'uth-rhd')
 
