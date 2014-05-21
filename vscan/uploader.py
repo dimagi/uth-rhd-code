@@ -130,7 +130,11 @@ def upload_exam(config, exam, index, total_count, retry_count=0):
         current_dir = os.path.dirname(os.path.realpath(__file__))
         shutil.move(
             exam.directory,
-            os.path.join(current_dir, 'complete')
+            os.path.join(
+                current_dir,
+                'complete',
+                os.path.split(exam.directory)[-1]
+            )
         )
 
     else:

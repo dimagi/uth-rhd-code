@@ -52,12 +52,14 @@ def run(config):
 
         if r.status_code == 200:
             if r.json()['result'] == 'uploaded':
-                pass
-                # TODO enable this after testing
-                # shutil.move(
-                #     session_dir,
-                #     os.path.join(current_path, 'complete')
-                # )
+                shutil.move(
+                    session_dir,
+                    os.path.join(
+                        CURRENT_PATH,
+                        'complete',
+                        os.path.split(session_dir)[-1]
+                    )
+                )
             print "%s: %s" % (r.json()['result'], r.json()['message'])
         else:
             print r
