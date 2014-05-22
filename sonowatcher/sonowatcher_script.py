@@ -77,6 +77,8 @@ def run(config):
                 )
                 if r.status_code == 200:
                     break
+                else:
+                    print "Error (%s)" % r.status_code
 
         except requests.ConnectionError:
             print "Could not connect to server."
