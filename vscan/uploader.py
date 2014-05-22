@@ -7,8 +7,6 @@ import string
 import ConfigParser
 import getpass
 
-MAX_MBS = 3.4
-
 try:
     # find first windows drive with the special scanner file present
     SCANNER_DIR = ['%s:' % d for d in string.uppercase if (
@@ -54,7 +52,7 @@ def get_file_size(file_path):
     return float(os.stat(file_path).st_size) / 1024 / 1024
 
 
-def pack_directory(directory):
+def pack_directory(directory, max_upload_size):
     current_mbs = 0
     skipped = False
     packed_directory = {}
@@ -64,13 +62,15 @@ def pack_directory(directory):
             file_path = os.path.join(root, f)
             file_size = get_file_size(file_path)
 
-            if f[-4:].lower() == '.wav':
+            if f[-4:].lower() == '.wav' or f[0] == '.':
                 # we don't care about sound clips for the study
-                # so lets not waste bandwidth on them
+                # so lets not waste bandwidth on them. also ignore any bogus
+                # .DS_Store or other files like that that will
+                # crash the xml parser
                 continue
 
             # only add the file if we aren't going over our system limit
-            if current_mbs + file_size < MAX_MBS:
+            if current_mbs + file_size < max_upload_size:
                 packed_directory[f] = open(file_path, 'rb')
                 current_mbs += file_size
             else:
@@ -98,7 +98,7 @@ def upload_exam(config, exam, index, total_count, retry_count=0):
             total_count,
             retry_count + 1
         )
-    files = pack_directory(exam.directory)
+    files = pack_directory(exam.directory, config['max_upload_size'])
 
     try:
         s = requests.Session()
@@ -120,12 +120,10 @@ def upload_exam(config, exam, index, total_count, retry_count=0):
     for f in files.values():
         f.close()
 
-    print "Processed exam: %s" % os.path.split(exam.directory)[-1]
-    print "Result code: %s" % r.status_code
+    print "Finished exam: %s" % os.path.split(exam.directory)[-1]
 
     if r.status_code == 200:
         print "Result: %s" % r.json()['result']
-        print "Message: %s" % r.json()['message']
 
         current_dir = os.path.dirname(os.path.realpath(__file__))
         shutil.move(
@@ -138,7 +136,10 @@ def upload_exam(config, exam, index, total_count, retry_count=0):
         )
 
     else:
-        print "Result: Failed"
+        if r.status_code == 502:
+            print "Result: Failed due to timeout (502) with the server. If this continues to be a problem, you can try to lower the max_upload_size option in the configuration file."
+        else:
+            print "Result: Failed (%s)" % r.status_code
 
     return r
 
@@ -226,6 +227,7 @@ if __name__ == '__main__':
             config['server'] = cfg_file.get('uploader', 'server')
             config['username'] = cfg_file.get('uploader', 'username')
             config['password'] = cfg_file.get('uploader', 'password')
+            config['max_upload_size'] = cfg_file.getfloat('uploader', 'max_upload_size')
 
             config['url'] = '%s/a/%s' % (config['server'], 'uth-rhd')
 
