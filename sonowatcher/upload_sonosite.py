@@ -84,6 +84,10 @@ def run(config):
             print "Could not connect to server."
             continue
 
+        # clean up
+        for f in files.values():
+            f.close()
+
         if r.status_code == 200:
             if r.json()['result'] == 'uploaded':
                 shutil.move(
