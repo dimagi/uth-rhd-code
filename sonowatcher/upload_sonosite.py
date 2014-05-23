@@ -65,12 +65,13 @@ def run(config):
             print "Some images or videos were skipped due to exam size being too large."
 
         try:
+            s = requests.Session()
+            s.auth = HTTPDigestAuth(config['username'], config['password'])
+
             for attempt in range(ATTEMPT_COUNT):
                 if attempt > 0:
                     print "Retrying... retry attempt %s" % attempt
 
-                s = requests.Session()
-                s.auth = HTTPDigestAuth(config['username'], config['password'])
                 r = s.post(
                     config['url'] + '/sonosite_upload',
                     files=files,
@@ -78,6 +79,10 @@ def run(config):
                 if r.status_code == 200:
                     break
                 else:
+                    # need to reset the file pointers before
+                    # attempting again (or no content will be sent)
+                    for f in files.values():
+                        f.seek(0)
                     print "Error (%s)" % r.status_code
 
         except requests.ConnectionError:
