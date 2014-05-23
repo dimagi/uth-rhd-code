@@ -7,7 +7,7 @@ import ConfigParser
 
 CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-SCANNER_OUTPUT_DIR = os.path.join(CURRENT_PATH, 'complete')
+SCANNER_OUTPUT_DIR = os.path.join(CURRENT_PATH, 'uploads')
 
 ATTEMPT_COUNT = 4
 

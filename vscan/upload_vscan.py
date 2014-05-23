@@ -241,7 +241,7 @@ if __name__ == '__main__':
 
             upload(config)
         except Exception as e:
-            print e
+            raise
     else:
         print "Vscan not found"
 
