@@ -1,7 +1,7 @@
 import os
 import shutil
 import requests
-from requests.auth import HTTPDigestAuth
+from requests.auth import HTTPBasicAuth
 from collections import namedtuple
 import string
 import ConfigParser
@@ -102,10 +102,12 @@ def upload_exam(config, exam, index, total_count, retry_count=0):
     files = pack_directory(exam.directory, config['max_upload_size'])
 
     try:
+
         s = requests.Session()
-        s.auth = HTTPDigestAuth(config['username'], config['password'])
+        s.auth = HTTPBasicAuth(config['username'], config['password'])
+        url = config['url'] + '/vscan_upload/'
         r = s.post(
-            config['url'] + '/vscan_upload',
+            url,
             files=files,
             data={
                 'scanner_serial': exam.serial,
@@ -163,9 +165,10 @@ def upload(config, test_mode=False):
         print "No exams to upload"
         return
 
+    url = config['url'] + '/pending_exams/' + exams[0].serial
     r = requests.get(
-        url=config['url'] + '/pending_exams/' + exams[0].serial,
-        auth=HTTPDigestAuth(config['username'], config['password']),
+        url=url,
+        auth=HTTPBasicAuth(config['username'], config['password']),
     )
 
     if r.status_code != 200 or 'exam_ids' not in r.json().keys():
