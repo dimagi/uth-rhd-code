@@ -6,6 +6,7 @@ from collections import namedtuple
 import string
 import ConfigParser
 import getpass
+import sys
 
 try:
     # find first windows drive with the special scanner file present
@@ -153,7 +154,7 @@ def find_duplicate_exam_ids(exam_ids):
     return dupes
 
 
-def upload(config):
+def upload(config, test_mode=False):
     print "Checking exams"
     exams = list(parse_archive())
     print "Done checking exams"
@@ -180,7 +181,7 @@ def upload(config):
     )
 
     for i, exam in enumerate(exams):
-        if exam.scan_id.lstrip('0') not in pending_exams:
+        if not test_mode and exam.scan_id.lstrip('0') not in pending_exams:
             print "\nSkipping exam %s since there is no found pending exam." % exam.scan_id.lstrip('0')
             continue
 
@@ -198,25 +199,35 @@ def upload(config):
             ))
 
     while len(failed_uploads):
-        current_upload = failed_uploads.pop(0)
+        if not test_mode:
+            current_upload = failed_uploads.pop(0)
 
-        result = upload_exam(
-            config,
-            current_upload.exam,
-            current_upload.exam_index,
-            len(exams),
-            current_upload.failure_count
-        )
-
-        if (not result or result.status_code != 200) and current_upload.failure_count < 3:
-            failed_uploads.append(FailedUpload(
+            result = upload_exam(
+                config,
                 current_upload.exam,
                 current_upload.exam_index,
-                current_upload.failure_count + 1
-            ))
+                len(exams),
+                current_upload.failure_count
+            )
+
+            if (not result or result.status_code != 200) and current_upload.failure_count < 3:
+                failed_uploads.append(FailedUpload(
+                    current_upload.exam,
+                    current_upload.exam_index,
+                    current_upload.failure_count + 1
+                ))
 
 
 if __name__ == '__main__':
+    test_mode = False
+
+    if '--test' in sys.argv[1:]:
+        SCANNER_DIR = os.path.join(
+            os.getcwd(),
+            'ARCHIVE'
+        )
+        test_mode = True
+
     if SCANNER_DIR:
         try:
             cfg_file = ConfigParser.RawConfigParser()
@@ -239,7 +250,7 @@ if __name__ == '__main__':
             elif not config['password']:
                 config['password'] = getpass.getpass()
 
-            upload(config)
+            upload(config, test_mode)
         except Exception as e:
             raise
     else:
