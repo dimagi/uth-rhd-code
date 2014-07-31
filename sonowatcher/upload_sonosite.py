@@ -1,7 +1,7 @@
 import os
+from requests.auth import HTTPBasicAuth
 from watcher import SonoSiteWatcher
 import requests
-from requests.auth import HTTPDigestAuth
 import shutil
 import ConfigParser
 
@@ -66,8 +66,7 @@ def run(config):
 
         try:
             s = requests.Session()
-            s.auth = HTTPDigestAuth(config['username'], config['password'])
-
+            s.auth = HTTPBasicAuth(config['username'], config['password'])
             for attempt in range(ATTEMPT_COUNT):
                 if attempt > 0:
                     print "Retrying... retry attempt %s" % attempt
