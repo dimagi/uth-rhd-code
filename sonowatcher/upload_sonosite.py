@@ -7,6 +7,7 @@ import ConfigParser
 
 CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 
+# This is the directory used on the SonoSite laptop in Lusaka
 SCANNER_OUTPUT_DIR = "C:\\sonosite"
 
 ATTEMPT_COUNT = 4
